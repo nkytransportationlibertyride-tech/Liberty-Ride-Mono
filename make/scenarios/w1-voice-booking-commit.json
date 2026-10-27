@@ -1,0 +1,163 @@
+{
+ "teamId": 3285635,
+ "name": "W1 Voice Booking Commit v2",
+ "scheduling": {
+  "type": "immediately"
+ },
+ "modules": [
+  {
+   "id": 1,
+   "module": "gateway:CustomWebHook",
+   "version": 1,
+   "root": "main",
+   "label": "W1 Voice Booking Commit",
+   "config": {}
+  },
+  {
+   "id": 2,
+   "module": "builtin:BasicRouter",
+   "version": 1,
+   "follows": 1,
+   "label": "Secret gate",
+   "config": {}
+  },
+  {
+   "id": 3,
+   "module": "http:MakeRequest",
+   "version": 4,
+   "label": "Issue quote token",
+   "config": {
+    "parameters": {
+     "authenticationType": "noAuth"
+    },
+    "mapper": {
+     "url": "https://lgvusahqkdwargrjrmmy.supabase.co/rest/v1/rpc/issue_quote_token",
+     "method": "post",
+     "headers": [
+      {
+       "name": "apikey",
+       "value": "PASTE_SUPABASE_SERVICE_ROLE_KEY_HERE"
+      },
+      {
+       "name": "Authorization",
+       "value": "Bearer PASTE_SUPABASE_SERVICE_ROLE_KEY_HERE"
+      }
+     ],
+     "contentType": "json",
+     "inputMethod": "jsonString",
+     "jsonStringBodyContent": "{\n  \"p_service_type\": \"{{1.service_type}}\",\n  \"p_distance_miles\": {{1.distance_miles}},\n  \"p_pickup_address\": \"{{1.pickup_address}}\",\n  \"p_dropoff_address\": \"{{1.dropoff_address}}\",\n  \"p_pickup_datetime\": \"{{1.pickup_datetime}}\",\n  \"p_zone_code\": \"{{1.zone_code}}\"\n}",
+     "parseResponse": true,
+     "stopOnHttpError": true,
+     "allowRedirects": true,
+     "shareCookies": false,
+     "requestCompressedContent": true
+    }
+   },
+   "parent": {
+    "moduleId": 2,
+    "kind": "route",
+    "index": 0
+   },
+   "filter": {
+    "name": "x-vapi-secret check",
+    "conditions": [
+     [
+      {
+       "a": "{{first(map(1.__IMTHEADERS__; \"value\"; \"name\"; \"x-vapi-secret\"))}}",
+       "o": "text:equal",
+       "b": "PASTE_VAPI_SHARED_SECRET_HERE"
+      }
+     ]
+    ]
+   }
+  },
+  {
+   "id": 4,
+   "module": "http:MakeRequest",
+   "version": 4,
+   "label": "Commit booking",
+   "config": {
+    "parameters": {
+     "authenticationType": "noAuth"
+    },
+    "mapper": {
+     "url": "https://lgvusahqkdwargrjrmmy.supabase.co/rest/v1/rpc/commit_booking",
+     "method": "post",
+     "headers": [
+      {
+       "name": "apikey",
+       "value": "PASTE_SUPABASE_SERVICE_ROLE_KEY_HERE"
+      },
+      {
+       "name": "Authorization",
+       "value": "Bearer PASTE_SUPABASE_SERVICE_ROLE_KEY_HERE"
+      }
+     ],
+     "contentType": "json",
+     "inputMethod": "jsonString",
+     "jsonStringBodyContent": "{\n  \"p_customer_name\": \"{{1.customer_name}}\",\n  \"p_customer_phone\": \"{{1.customer_phone}}\",\n  \"p_service_type\": \"{{1.service_type}}\",\n  \"p_pickup_address\": \"{{1.pickup_address}}\",\n  \"p_dropoff_address\": \"{{1.dropoff_address}}\",\n  \"p_pickup_datetime\": \"{{1.pickup_datetime}}\",\n  \"p_flight_number\": \"{{1.flight_number}}\",\n  \"p_special_needs\": \"{{1.special_needs}}\",\n  \"p_quote_token\": \"{{ifempty(3.data.quote_token; first(3.data).quote_token)}}\",\n  \"p_quoted_fare\": {{ifempty(3.data.fare; first(3.data).fare)}},\n  \"p_actor\": \"vapi\",\n  \"p_zone_code\": \"{{1.zone_code}}\",\n  \"p_idempotency_key\": \"{{1.idempotency_key}}\",\n  \"p_vapi_call_id\": \"{{1.vapi_call_id}}\",\n  \"p_estimated_duration_minutes\": {{ifempty(1.estimated_duration_minutes; \"null\")}}\n}",
+     "parseResponse": true,
+     "stopOnHttpError": true,
+     "allowRedirects": true,
+     "shareCookies": false,
+     "requestCompressedContent": true
+    }
+   },
+   "follows": 3
+  },
+  {
+   "id": 5,
+   "module": "gateway:WebhookRespond",
+   "version": 1,
+   "label": "200 - booking created",
+   "config": {
+    "mapper": {
+     "status": 200,
+     "headers": [
+      {
+       "key": "Content-Type",
+       "value": "application/json"
+      }
+     ],
+     "body": "{\"booking_id\": \"{{ifempty(4.data.booking_id; first(4.data).booking_id)}}\", \"status\": \"{{ifempty(4.data.ride_status; first(4.data).ride_status)}}\", \"fare\": {{ifempty(4.data.estimated_fare; first(4.data).estimated_fare)}}}"
+    }
+   },
+   "follows": 4
+  },
+  {
+   "id": 6,
+   "module": "gateway:WebhookRespond",
+   "version": 1,
+   "label": "401 - unauthorized",
+   "config": {
+    "mapper": {
+     "status": 401,
+     "headers": [
+      {
+       "key": "Content-Type",
+       "value": "application/json"
+      }
+     ],
+     "body": "{\"error\":\"unauthorized\"}"
+    }
+   },
+   "parent": {
+    "moduleId": 2,
+    "kind": "route",
+    "index": 1
+   },
+   "filter": {
+    "name": "x-vapi-secret mismatch",
+    "conditions": [
+     [
+      {
+       "a": "{{first(map(1.__IMTHEADERS__; \"value\"; \"name\"; \"x-vapi-secret\"))}}",
+       "o": "text:notequal",
+       "b": "PASTE_VAPI_SHARED_SECRET_HERE"
+      }
+     ]
+    ]
+   }
+  }
+ ]
+}
