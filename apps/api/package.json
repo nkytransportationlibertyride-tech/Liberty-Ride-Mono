@@ -1,0 +1,1 @@
+{"name":"@liberty/api","private":true,"scripts":{"start":"bun run src/index.ts"},"version":"0.1.0"}

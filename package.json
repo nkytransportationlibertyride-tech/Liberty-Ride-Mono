@@ -1,0 +1,23 @@
+﻿{
+  "name": "liberty-ride-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Liberty Ride NKY Trans, LLC - Monorepo consolidÃ© avec interfaces Stitch/AI Studio et BFF API",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "dev:site": "turbo run dev --filter=@liberty/site",
+    "dev:clients": "turbo run dev --filter=@liberty/clients",
+    "dev:drivers": "turbo run dev --filter=@liberty/drivers",
+    "dev:admin": "turbo run dev --filter=@liberty/admin",
+    "dev:portal": "turbo run dev --filter=@liberty/portal",
+    "dev:api": "turbo run start --filter=@liberty/api"
+  },
+  "devDependencies": {
+    "turbo": "^2.0.0"
+  }
+}

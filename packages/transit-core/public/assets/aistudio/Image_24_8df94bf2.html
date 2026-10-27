@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_blank" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-background": "#1b1c1c", "primary-fixed": "#e5e2e1", "primary-fixed-dim": "#c8c6c5", "tertiary-fixed-dim": "#cac6c3", "outline": "#747878", "on-primary": "#ffffff", "secondary-fixed-dim": "#44e183", "inverse-primary": "#c8c6c5", "primary": "#000000", "on-primary-container": "#858383", "on-error": "#ffffff", "on-secondary-fixed-variant": "#005228", "error-container": "#ffdad6", "error": "#ba1a1a", "surface-container-highest": "#e3e2e2", "surface": "#fbf9f9", "surface-dim": "#dbdad9", "on-error-container": "#93000a", "secondary": "#006d37", "on-surface": "#1b1c1c", "primary-container": "#1c1b1b", "tertiary-fixed": "#e6e1df", "outline-variant": "#c4c7c7", "on-tertiary-container": "#868381", "surface-bright": "#fbf9f9", "on-tertiary": "#ffffff", "surface-tint": "#5f5e5e", "on-tertiary-fixed": "#1d1b1a", "on-primary-fixed-variant": "#474646", "inverse-surface": "#303031", "tertiary-container": "#1d1b1a", "tertiary": "#000000", "inverse-on-surface": "#f2f0f0", "on-primary-fixed": "#1c1b1b", "secondary-fixed": "#66fe9c", "surface-variant": "#e3e2e2", "on-tertiary-fixed-variant": "#484645", "on-surface-variant": "#444748", "surface-container-high": "#e9e8e7", "on-secondary-container": "#00743b", "surface-container-low": "#f5f3f3", "background": "#fbf9f9", "on-secondary": "#ffffff", "surface-container": "#efeded", "secondary-container": "#66fe9c", "on-secondary-fixed": "#00210d", "surface-container-lowest": "#ffffff" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-xl": "2rem", "space-sm": "0.5rem", "space-lg": "1.5rem", "space-md": "1rem", "gutter": "1rem", "margin": "1rem", "space-xs": "0.25rem" }, "fontFamily": { "label-md": ["Inter"], "body-sm": ["Inter"], "numeric-fare": ["Inter"], "headline-sm": ["Inter"], "headline-xl": ["Inter"], "numeric-eta": ["Inter"], "headline-xl-mobile": ["Inter"], "headline-lg": ["Inter"], "body-lg": ["Inter"], "headline-lg-mobile": ["Inter"], "body-md": ["Inter"], "label-lg": ["Inter"], "headline-md": ["Inter"], "label-sm": ["Inter"] }, "fontSize": { "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "400" }], "numeric-fare": ["22px", { "lineHeight": "26px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-sm": ["16px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "600" }], "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "numeric-eta": ["14px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "600" }], "headline-xl-mobile": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-lg-mobile": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }], "label-lg": ["15px", { "lineHeight": "20px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-md": ["20px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "700" }] } } } }</style><style>@layer base { html, body { width: 100vw; margin: 0; padding: 0; } body { overscroll-behavior: none; } .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); } .pt-safe { padding-top: env(safe-area-inset-top, 0px); } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen pt-safe pb-safe"><main class="flex flex-col relative w-full bg-surface min-h-screen"><div class="flex flex-col w-full px-margin pb-space-xl">
+  <!-- Brand & Identity Lockup -->
+  <div class="flex flex-col items-center justify-center pt-space-lg pb-space-lg text-center">
+    <div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center mb-space-sm shadow-sm">
+      <span class="material-symbols-outlined text-primary text-[28px]" style="font-variation-settings: 'FILL' 1;">directions_car</span>
+    </div>
+    <div class="flex items-center gap-space-xs">
+      <span class="font-headline-md text-headline-md text-on-surface tracking-tight">Liberty Ride</span>
+      <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+        Driver Portal
+      </span>
+    </div>
+    <span class="font-body-sm text-body-sm text-outline mt-space-xs">
+      Erlanger &bull; Northern Kentucky (EDT)
+    </span>
+  </div>
+
+  <!-- Primary Card Surface -->
+  <div class="w-full bg-surface-container-lowest rounded-xl shadow-md p-space-md flex flex-col">
+    <!-- Header Copy -->
+    <div class="flex flex-col mb-space-lg">
+      <h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Driver sign-in</h1>
+      <p class="font-body-md text-body-md text-on-surface-variant mt-space-xs">
+        Use the phone number the owner registered for you.
+      </p>
+    </div>
+
+    <!-- Phone Identification Input Form -->
+    <form id="driver-signin-form" class="flex flex-col w-full" onsubmit="event.preventDefault(); handleSignIn();">
+      <div class="flex flex-col mb-space-md">
+        <label for="phone-input" class="font-label-md text-label-md text-on-surface mb-space-xs flex items-center justify-between">
+          <span>Registered Phone Number</span>
+          <span class="font-body-sm text-body-sm text-outline">US (+1)</span>
+        </label>
+        
+        <div class="relative flex items-center w-full">
+          <div class="absolute left-4 flex items-center justify-center pointer-events-none text-on-surface-variant">
+            <span class="material-symbols-outlined text-[20px]">call</span>
+          </div>
+          <input 
+            type="tel" 
+            id="phone-input" 
+            name="phone"
+            autocomplete="tel"
+            inputmode="numeric"
+            placeholder="(859) 537-1827" 
+            value="(859) 537-1827"
+            class="w-full h-[52px] pl-11 pr-4 bg-surface-container-low text-on-surface font-headline-sm text-headline-sm rounded-full outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary transition-all duration-150"
+            required
+          />
+        </div>
+        
+        <div class="flex items-center gap-1.5 mt-space-xs px-2 text-on-surface-variant">
+          <span class="material-symbols-outlined text-[15px] text-outline">verified_user</span>
+          <span class="font-body-sm text-body-sm text-outline">Your phone number is remembered on this device.</span>
+        </div>
+      </div>
+
+      <!-- Action Button -->
+      <button 
+        type="submit" 
+        id="continue-btn"
+        class="w-full h-[52px] bg-primary text-on-primary rounded-full font-label-lg text-label-lg flex items-center justify-center gap-space-xs active:bg-neutral-800 transition-colors shadow-sm"
+      >
+        <span>Continue</span>
+        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+      </button>
+    </form>
+
+    <!-- Operational System Notice -->
+    <div class="mt-space-lg pt-space-md bg-surface-container-low rounded-lg p-space-md flex flex-col gap-1">
+      <div class="flex items-center justify-between">
+        <span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Fleet Status</span>
+        <div class="flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-secondary"></span>
+          <span class="font-label-sm text-label-sm text-secondary font-semibold">DISPATCH READY</span>
+        </div>
+      </div>
+      <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+        Direct roster validation. Immediate dispatch handover without verification code delays.
+      </p>
+    </div>
+  </div>
+
+  <!-- Explicit Error State Card (Toggled / Presented with Full Resolution Path) -->
+  <div id="error-banner" class="w-full mt-space-md bg-error-container rounded-xl p-space-md flex flex-col shadow-sm transition-opacity duration-200">
+    <div class="flex items-start gap-3">
+      <div class="w-8 h-8 rounded-full bg-error flex items-center justify-center shrink-0 mt-0.5">
+        <span class="material-symbols-outlined text-on-error text-[18px]">error</span>
+      </div>
+      <div class="flex flex-col flex-1 min-w-0">
+        <div class="flex items-center justify-between">
+          <h2 class="font-headline-sm text-headline-sm text-on-error-container">Unknown reference</h2>
+          <span class="font-label-sm text-label-sm text-error uppercase">Unregistered</span>
+        </div>
+        <p class="font-body-sm text-body-sm text-on-error-container mt-1">
+          This number is not on the active Northern Kentucky driver roster. Please contact the owner directly to activate your profile.
+        </p>
+      </div>
+    </div>
+
+    <!-- Direct Resolution Dialing Action -->
+    <div class="mt-space-md pt-space-xs">
+      <a 
+        href="tel:+18595371827" 
+        class="w-full h-[48px] bg-surface-container-lowest text-error rounded-full font-label-md text-label-md flex items-center justify-center gap-2 active:bg-surface-container-high transition-colors shadow-sm"
+      >
+        <span class="material-symbols-outlined text-[18px]">call</span>
+        <span>Call Owner (+1 859-537-1827)</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Operational Footer Details -->
+  <div class="flex flex-col items-center justify-center text-center mt-space-lg mb-space-sm px-space-md">
+    <p class="font-body-sm text-body-sm text-outline">
+      Liberty Ride Fleet Management &bull; Regional Hub
+    </p>
+    <p class="font-body-sm text-body-sm text-outline mt-0.5">
+      Standard dispatch operations logged in Eastern Time (America/New_York)
+    </p>
+  </div>
+</div>
+
+<script>
+  function handleSignIn() {
+    const input = document.getElementById('phone-input');
+    const cleanNumber = input.value.replace(/\D/g, '');
+    const errorBanner = document.getElementById('error-banner');
+    const submitBtn = document.getElementById('continue-btn');
+
+    // Micro-interaction for feedback
+    submitBtn.classList.add('opacity-75');
+    submitBtn.querySelector('span:first-child').textContent = 'Validating...';
+
+    setTimeout(() => {
+      submitBtn.classList.remove('opacity-75');
+      submitBtn.querySelector('span:first-child').textContent = 'Continue';
+      
+      // Known demo test condition: registered number vs unknown
+      if (cleanNumber.endsWith('1827')) {
+        errorBanner.classList.add('hidden');
+        submitBtn.querySelector('span:first-child').textContent = 'Driver Confirmed';
+        submitBtn.classList.add('bg-secondary');
+      } else {
+        errorBanner.classList.remove('hidden');
+      }
+    }, 400);
+  }
+
+  // Automatic US phone formatter for clean input
+  const phoneInputField = document.getElementById('phone-input');
+  if (phoneInputField) {
+    phoneInputField.addEventListener('input', function (e) {
+      let x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+      e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+    });
+  }
+</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body></body></html>

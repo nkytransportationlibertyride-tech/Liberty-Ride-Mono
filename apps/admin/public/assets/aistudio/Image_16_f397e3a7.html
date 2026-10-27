@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "background": "#fbf9f9", "primary-fixed": "#e5e2e1", "on-surface-variant": "#444748", "secondary-fixed": "#66fe9c", "error-container": "#ffdad6", "surface-container-lowest": "#ffffff", "on-tertiary-fixed": "#1d1b1a", "on-primary-fixed": "#1c1b1b", "primary": "#000000", "surface-container-highest": "#e3e2e2", "on-tertiary-fixed-variant": "#484645", "surface-container-high": "#e9e8e7", "on-error": "#ffffff", "on-secondary-fixed-variant": "#005228", "on-error-container": "#93000a", "inverse-primary": "#c8c6c5", "on-primary": "#ffffff", "tertiary-fixed-dim": "#cac6c3", "primary-container": "#1c1b1b", "surface-container-low": "#f5f3f3", "surface-variant": "#e3e2e2", "on-secondary-fixed": "#00210d", "on-background": "#1b1c1c", "inverse-on-surface": "#f2f0f0", "on-tertiary-container": "#868381", "tertiary-fixed": "#e6e1df", "on-primary-fixed-variant": "#474646", "on-surface": "#1b1c1c", "surface-bright": "#fbf9f9", "primary-fixed-dim": "#c8c6c5", "error": "#ba1a1a", "outline-variant": "#c4c7c7", "secondary-container": "#66fe9c", "on-tertiary": "#ffffff", "outline": "#747878", "surface-tint": "#5f5e5e", "surface": "#fbf9f9", "tertiary-container": "#1d1b1a", "tertiary": "#000000", "on-secondary": "#ffffff", "on-primary-container": "#858383", "inverse-surface": "#303031", "surface-container": "#efeded", "on-secondary-container": "#00743b", "secondary": "#006d37", "secondary-fixed-dim": "#44e183", "surface-dim": "#dbdad9" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-md": "1rem", "space-lg": "1.5rem", "space-xl": "2rem", "space-xs": "0.25rem", "gutter": "1rem", "space-sm": "0.5rem", "margin": "1rem" }, fontFamily: { "headline-lg": ["Inter"], "headline-xl-mobile": ["Inter"], "label-sm": ["Inter"], "body-md": ["Inter"], "label-lg": ["Inter"], "label-md": ["Inter"], "body-sm": ["Inter"], "headline-xl": ["Inter"], "numeric-eta": ["Inter"], "headline-sm": ["Inter"], "numeric-fare": ["Inter"], "body-lg": ["Inter"], "headline-md": ["Inter"], "headline-lg-mobile": ["Inter"] }, fontSize: { "headline-lg": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700"}], "headline-xl-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700"}], "label-sm": ["11px", {"lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "700"}], "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400"}], "label-lg": ["15px", {"lineHeight": "20px", "letterSpacing": "-0.01em", "fontWeight": "600"}], "label-md": ["13px", {"lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "600"}], "body-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "400"}], "headline-xl": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}], "numeric-eta": ["14px", {"lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "600"}], "headline-sm": ["16px", {"lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "600"}], "numeric-fare": ["22px", {"lineHeight": "26px", "letterSpacing": "-0.02em", "fontWeight": "700"}], "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}], "headline-md": ["20px", {"lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600"}], "headline-lg-mobile": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "700"}] } } } };</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-on-surface antialiased flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="flex items-center justify-between px-margin h-6 select-none"><span class="font-label-sm text-label-sm text-on-surface font-bold">9:41</span><div class="flex items-center gap-space-xs text-on-surface"><span class="material-symbols-outlined text-[14px]">signal_cellular_alt</span><span class="material-symbols-outlined text-[14px]">wifi</span><span class="material-symbols-outlined text-[16px]">battery_full</span></div></div><div class="h-14 px-margin flex items-center justify-between"><div class="flex flex-col"><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm font-bold tracking-tight text-on-surface uppercase">Liberty Ride</span><span class="font-label-sm text-label-sm bg-surface-container-highest px-space-xs py-0.5 rounded text-on-surface-variant font-bold tracking-wider">NKY</span></div><span class="font-body-sm text-body-sm text-on-surface-variant -mt-1">Airport Cvg</span></div><div class="flex items-center gap-space-sm"><a aria-label="Call Dispatch +1 (859) 537-1827" class="w-11 h-11 rounded-full bg-surface-container-high hover:bg-surface-container-highest flex items-center justify-center text-error transition-colors" href="tel:+18595371827"><span class="material-symbols-outlined text-[20px]">call</span></a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-20 pb-24 bg-surface min-h-screen px-margin"><div class="flex flex-col w-full pb-6 space-y-4">
+<!-- Airport Context Header Card -->
+<section class="bg-surface-container-low rounded-xl p-space-md shadow-sm relative overflow-hidden">
+<div class="flex items-center justify-between gap-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary shrink-0">
+<span class="material-symbols-outlined text-[18px]">flight_land</span>
+</span>
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold">Terminal Ground Transport</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface leading-tight">CVG Airport Arrival Pickup</h1>
+</div>
+</div>
+<div class="inline-flex items-center px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm shrink-0">
+<span class="w-2 h-2 rounded-full bg-secondary mr-1.5 animate-pulse"></span>
+        FLIGHT SYNC
+      </div>
+</div>
+<div class="mt-3 flex items-center gap-2 p-2.5 rounded-lg bg-surface-container-lowest shadow-sm">
+<span class="material-symbols-outlined text-secondary text-[20px] shrink-0">verified</span>
+<p class="font-body-sm text-body-sm text-on-surface leading-snug">
+        Free 45-min gate delay grace period included with regional dispatch monitoring.
+      </p>
+</div>
+</section>
+<!-- Flight Details (Prominent First Input) -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-space-sm">
+<div class="flex items-center justify-between">
+<label class="font-label-lg text-label-lg text-on-surface flex items-center gap-1.5" for="flight-input">
+<span class="material-symbols-outlined text-[18px] text-primary">airplane_ticket</span>
+        Arrival Flight Number
+      </label>
+<span class="font-label-sm text-label-sm text-secondary font-bold uppercase tracking-wider">Auto-tracking</span>
+</div>
+<div class="relative">
+<input class="w-full h-12 px-4 rounded-full bg-surface-container-low text-on-surface font-label-lg text-label-lg focus:bg-surface-container-lowest outline-none transition-all placeholder:text-outline" id="flight-input" placeholder="e.g. DL 1492 or AA 2240" type="text" value="DL 1492 (Delta Air Lines)"/>
+<div class="absolute right-3.5 top-1/2 -translate-y-1/2 flex items-center gap-1">
+<span class="inline-flex items-center text-[10px] font-bold px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface">ON TIME</span>
+</div>
+</div>
+<div class="flex items-start gap-1.5 px-1 pt-0.5">
+<span class="material-symbols-outlined text-on-surface-variant text-[16px] shrink-0 mt-0.5">info</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        Add your flight number so your driver can follow delays and adjust curbside pickup.
+      </p>
+</div>
+</section>
+<!-- Route Waypoints: Curbside Pickup & Medical Destination -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-3">
+<!-- Pickup Point (Preset locked CVG Hub) -->
+<div class="flex items-start gap-3">
+<div class="flex flex-col items-center mt-1">
+<span class="w-3 h-3 rounded-full bg-primary shrink-0"></span>
+<span class="w-0.5 h-10 bg-outline-variant my-1"></span>
+<span class="w-3 h-3 rounded bg-primary shrink-0"></span>
+</div>
+<div class="flex-1 space-y-3 min-w-0">
+<!-- Pickup location box -->
+<div class="p-3 rounded-lg bg-surface-container-low">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase font-bold text-on-surface-variant">Curbside Pickup (Terminal 3)</span>
+<button class="font-label-sm text-label-sm text-primary font-bold hover:underline" type="button">Change</button>
+</div>
+<div class="font-label-lg text-label-lg text-on-surface truncate mt-0.5">
+            CVG Airport Terminal 3, Curbside Ground Transport
+          </div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Hebron, KY 41048 (Door 5, Commercial Lane)</p>
+</div>
+<!-- Destination location box -->
+<div class="p-3 rounded-lg bg-surface-container-low">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase font-bold text-on-surface-variant">Dropoff Destination</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">11.4 mi</span>
+</div>
+<div class="font-label-lg text-label-lg text-on-surface truncate mt-0.5">
+            St. Elizabeth Healthcare
+          </div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">1 Medical Village Dr, Edgewood, KY 41017</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Schedule & Flight Synchronized Time -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-2">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-primary">schedule</span>
+        Pickup Time Window
+      </span>
+<span class="font-label-sm text-label-sm bg-surface-container-high px-2 py-0.5 rounded text-on-surface font-semibold">
+        America/New_York (ET)
+      </span>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-primary text-[20px]">calendar_today</span>
+<div>
+<div class="font-label-lg text-label-lg text-on-surface">Today, 03:30 PM EDT</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Calculated ~25m post gate-touchdown</span>
+</div>
+</div>
+<button aria-label="Adjust pickup schedule" class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface" type="button">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+</button>
+</div>
+</section>
+<!-- Airport Flat-Rate Zone Selector -->
+<section class="space-y-2">
+<div class="flex items-center justify-between px-1">
+<h2 class="font-label-lg text-label-lg text-on-surface font-bold">Standard Airport Zones</h2>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Fixed pricing, no surges</span>
+</div>
+<!-- Zone Cards -->
+<div aria-label="Airport Zone Selection" class="space-y-2.5" id="zone-picker" role="radiogroup">
+<!-- Zone 1 (Selected) -->
+<div aria-checked="true" class="zone-card p-space-md rounded-xl bg-surface-container-lowest shadow-md cursor-pointer transition-all flex flex-col gap-2 relative ring-2 ring-primary" data-zone="1" id="zone-1" role="radio" tabindex="0">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<span class="w-4 h-4 rounded-full bg-primary flex items-center justify-center text-on-primary text-[10px]">✓</span>
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Zone 1 — CVG to Erlanger &amp; Immediate Corridor</span>
+</div>
+<span class="font-numeric-fare text-numeric-fare text-on-surface">$35</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant pl-6">
+          Direct flat rate to Erlanger, Edgewood, Florence hub, and contiguous regional medical centers.
+        </p>
+<div class="pl-6 flex items-center gap-3 font-label-sm text-label-sm text-on-surface-variant pt-1">
+<span class="inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">local_shipping</span> Trunk space: 3 bags
+          </span>
+<span class="inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">timer</span> ~18 min transit
+          </span>
+</div>
+</div>
+<!-- Zone 2 (Alternative) -->
+<div aria-checked="false" class="zone-card p-space-md rounded-xl bg-surface-container-low shadow-sm cursor-pointer transition-all flex flex-col gap-2 relative opacity-85 hover:opacity-100" data-zone="2" id="zone-2" role="radio" tabindex="0">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<span class="w-4 h-4 rounded-full bg-surface-container-highest flex items-center justify-center text-transparent text-[10px]">✓</span>
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Zone 2 — Extended NKY &amp; Downtown Cincinnati</span>
+</div>
+<span class="font-numeric-fare text-numeric-fare text-on-surface">$45</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant pl-6">
+          Covington, Newport, Fort Thomas, Riverfront corridor &amp; Cincinnati central business district.
+        </p>
+<div class="pl-6 flex items-center gap-3 font-label-sm text-label-sm text-on-surface-variant pt-1">
+<span class="inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">video_file</span> Ohio River link included
+          </span>
+<span class="inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">timer</span> ~28 min transit
+          </span>
+</div>
+</div>
+</div>
+</section>
+<!-- Airport Logistics & Assistance Checklist -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-2.5">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Included Arrival Amenities</span>
+<span class="material-symbols-outlined text-secondary text-[20px]">task_alt</span>
+</div>
+<div class="space-y-2">
+<div class="flex items-center gap-2 text-on-surface font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">luggage</span>
+<span>Luggage assistance &amp; oversized baggage accommodation</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">radar</span>
+<span>Real-time flight arrival telemetry &amp; automated schedule push</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">airline_seat_recline_normal</span>
+<span>Heated seats &amp; climate pre-conditioned cabin</span>
+</div>
+</div>
+</section>
+<!-- Tracking Philosophy Banner -->
+<div class="flex items-center gap-2.5 p-3 rounded-xl bg-surface-container-high text-on-surface">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px] shrink-0">timeline</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-snug">
+<strong class="text-on-surface font-semibold">Step-by-step milestone tracking</strong> — no live driver location to preserve battery and battery-draining telemetry while deplaning.
+    </p>
+</div>
+<!-- Primary Booking Actions -->
+<section class="space-y-3 pt-1">
+<button class="w-full h-14 rounded-full bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-2 shadow-md active:bg-neutral-800 transition-colors" id="get-estimate-btn" type="button">
+<span>Get Estimate &amp; Secure Pickup</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<div class="flex items-center justify-between px-2">
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">qr_code_2</span>
+<span>Ref UUID: <span class="font-mono text-on-surface font-bold" id="booking-uuid">CVG-7104-E4</span></span>
+</div>
+<a aria-label="Direct Phone Line for CVG Dispatch" class="inline-flex items-center gap-1 font-label-sm text-label-sm text-primary font-bold hover:underline" href="tel:+18595371827">
+<span class="material-symbols-outlined text-[16px]">call</span>
+        +1 (859) 537-1827
+      </a>
+</div>
+</section>
+<!-- Confirmation Modal / Toast Preview (Hidden initially, shown upon clicking estimate) -->
+<div class="hidden bg-surface-container-lowest p-space-md rounded-xl shadow-xl space-y-3" id="estimate-drawer">
+<div class="flex items-center justify-between pb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[22px]">check_circle</span>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Pickup Reserved</h2>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Driver assigned upon flight touchdown</span>
+</div>
+</div>
+<button class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center" id="close-drawer">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<div class="p-3 rounded-lg bg-surface-container-low font-body-sm text-body-sm space-y-1.5 text-on-surface">
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Estimated Fare:</span>
+<span class="font-bold text-on-surface" id="quote-fare">$35.00 Flat</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Meeting Spot:</span>
+<span class="font-semibold text-right">Door 5 Ground Transport</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Flight Monitored:</span>
+<span class="font-semibold">DL 1492 (CVG ARRIVAL)</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-center">
+      Questions or gate changes? Call dispatch directly at <a class="text-primary font-bold underline" href="tel:+18595371827">+1 (859) 537-1827</a>.
+    </p>
+</div>
+</div>
+<script>
+  (function() {
+    const zoneCards = document.querySelectorAll('.zone-card');
+    const estimateBtn = document.getElementById('get-estimate-btn');
+    const drawer = document.getElementById('estimate-drawer');
+    const closeDrawer = document.getElementById('close-drawer');
+    const quoteFare = document.getElementById('quote-fare');
+    const bookingUuid = document.getElementById('booking-uuid');
+
+    // Dynamic airport UUID generator
+    function generateUuid() {
+      const chars = 'ABCDEF0123456789';
+      let part = '';
+      for (let i = 0; i < 4; i++) {
+        part += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return 'CVG-' + Math.floor(1000 + Math.random() * 9000) + '-' + part;
+    }
+
+    let activeZone = '1';
+    let activePrice = '$35.00 Flat';
+
+    zoneCards.forEach(card => {
+      card.addEventListener('click', () => {
+        zoneCards.forEach(c => {
+          c.classList.remove('ring-2', 'ring-primary', 'bg-surface-container-lowest', 'opacity-100');
+          c.classList.add('bg-surface-container-low', 'opacity-85');
+          c.setAttribute('aria-checked', 'false');
+          const check = c.querySelector('span:first-child');
+          if (check) {
+            check.className = 'w-4 h-4 rounded-full bg-surface-container-highest flex items-center justify-center text-transparent text-[10px]';
+          }
+        });
+
+        card.classList.add('ring-2', 'ring-primary', 'bg-surface-container-lowest', 'opacity-100');
+        card.classList.remove('bg-surface-container-low', 'opacity-85');
+        card.setAttribute('aria-checked', 'true');
+        const activeCheck = card.querySelector('span:first-child');
+        if (activeCheck) {
+          activeCheck.className = 'w-4 h-4 rounded-full bg-primary flex items-center justify-center text-on-primary text-[10px]';
+        }
+
+        activeZone = card.getAttribute('data-zone');
+        activePrice = activeZone === '1' ? '$35.00 Flat' : '$45.00 Flat';
+      });
+    });
+
+    if (estimateBtn && drawer) {
+      estimateBtn.addEventListener('click', () => {
+        quoteFare.textContent = activePrice;
+        bookingUuid.textContent = generateUuid();
+        drawer.classList.remove('hidden');
+        drawer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+    }
+
+    if (closeDrawer && drawer) {
+      closeDrawer.addEventListener('click', () => {
+        drawer.classList.add('hidden');
+      });
+    }
+  })();
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-4px_16px_rgba(0,0,0,0.04)]" data-active-classes="text-primary font-bold"><div class="flex justify-around items-center h-16 px-space-xs"><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] h-12 text-on-surface-variant transition-colors" data-path="ride" href="#"><span class="material-symbols-outlined text-[22px]">local_taxi</span><span class="font-label-sm text-label-sm">Ride</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] h-12 text-on-surface-variant transition-colors" data-path="tracking" href="#"><span class="material-symbols-outlined text-[22px]">near_me</span><span class="font-label-sm text-label-sm">Tracking</span></a><a aria-current="page" class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] h-12 transition-colors text-primary font-bold" data-path="airport-cvg" href="#"><span class="material-symbols-outlined text-[22px]">flight</span><span class="font-label-sm text-label-sm">Airport CVG</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] h-12 text-on-surface-variant transition-colors" data-path="support" href="#"><span class="material-symbols-outlined text-[22px]">headset_mic</span><span class="font-label-sm text-label-sm">Support</span></a></div></nav></body></html>

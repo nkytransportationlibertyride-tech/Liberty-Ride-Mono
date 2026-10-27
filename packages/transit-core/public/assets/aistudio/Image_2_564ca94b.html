@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "surface-container-high": "#e9e8e7", "on-error-container": "#93000a", "error": "#ba1a1a", "primary-fixed": "#e5e2e1", "on-surface-variant": "#444748", "inverse-primary": "#c8c6c5", "secondary-fixed": "#66fe9c", "tertiary": "#000000", "surface-variant": "#e3e2e2", "primary-container": "#1c1b1b", "on-secondary-container": "#00743b", "error-container": "#ffdad6", "on-tertiary-container": "#868381", "secondary": "#006d37", "surface-tint": "#5f5e5e", "surface-container-low": "#f5f3f3", "on-primary": "#ffffff", "inverse-surface": "#303031", "inverse-on-surface": "#f2f0f0", "primary": "#000000", "tertiary-fixed-dim": "#cac6c3", "surface-container-highest": "#e3e2e2", "on-tertiary": "#ffffff", "tertiary-fixed": "#e6e1df", "on-background": "#1b1c1c", "on-primary-fixed": "#1c1b1b", "on-primary-container": "#858383", "secondary-container": "#66fe9c", "surface": "#fbf9f9", "on-surface": "#1b1c1c", "on-tertiary-fixed-variant": "#484645", "on-secondary-fixed-variant": "#005228", "on-secondary-fixed": "#00210d", "on-tertiary-fixed": "#1d1b1a", "primary-fixed-dim": "#c8c6c5", "secondary-fixed-dim": "#44e183", "outline": "#747878", "surface-bright": "#fbf9f9", "tertiary-container": "#1d1b1a", "background": "#fbf9f9", "on-secondary": "#ffffff", "outline-variant": "#c4c7c7", "surface-container-lowest": "#ffffff", "surface-dim": "#dbdad9", "surface-container": "#efeded", "on-error": "#ffffff", "on-primary-fixed-variant": "#474646" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "gutter": "1rem", "space-xl": "2rem", "space-sm": "0.5rem", "space-lg": "1.5rem", "space-xs": "0.25rem", "space-md": "1rem", "margin": "1rem" }, "fontFamily": { "headline-md": [ "Inter" ], "label-sm": [ "Inter" ], "label-lg": [ "Inter" ], "headline-xl": [ "Inter" ], "headline-xl-mobile": [ "Inter" ], "headline-lg": [ "Inter" ], "numeric-fare": [ "Inter" ], "label-md": [ "Inter" ], "body-sm": [ "Inter" ], "numeric-eta": [ "Inter" ], "headline-lg-mobile": [ "Inter" ], "body-md": [ "Inter" ], "body-lg": [ "Inter" ], "headline-sm": [ "Inter" ] }, "fontSize": { "headline-md": [ "20px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "label-sm": [ "11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "700" } ], "label-lg": [ "15px", { "lineHeight": "20px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "headline-xl": [ "36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "headline-xl-mobile": [ "28px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "headline-lg": [ "28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" } ], "numeric-fare": [ "22px", { "lineHeight": "26px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "label-md": [ "13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "600" } ], "body-sm": [ "12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "400" } ], "numeric-eta": [ "14px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "600" } ], "headline-lg-mobile": [ "22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "700" } ], "body-md": [ "14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" } ], "body-lg": [ "16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" } ], "headline-sm": [ "16px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "600" } ] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased min-h-screen flex flex-col"><header class="fixed top-0 left-0 w-full z-50 bg-surface/90 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 max-w-[1280px] mx-auto px-margin flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-lg"><a class="flex items-center gap-space-sm" data-path="overview" href="#"><div class="w-9 h-9 rounded-lg bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[20px]">local_taxi</span></div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary tracking-tight">LIBERTY RIDE</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">NKY Transit</span></div></a><nav class="hidden xl:flex items-center gap-space-md" data-active-classes="text-primary font-headline-sm"><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors py-space-xs px-space-sm" data-path="fare-estimator" href="#">Fare Estimator</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors py-space-xs px-space-sm" data-path="flat-zones" href="#">Flat Zones</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors py-space-xs px-space-sm" data-path="airport-cvg" href="#">Airport CVG</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors py-space-xs px-space-sm" data-path="medical-transport" href="#">Medical</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors py-space-xs px-space-sm" data-path="about-dispatch" href="#">About Dispatch</a></nav></div><div class="flex items-center gap-space-sm sm:gap-space-md"><a class="flex items-center gap-space-xs bg-surface-container hover:bg-surface-container-high transition-colors px-space-md py-space-sm rounded-full text-on-surface font-label-md text-label-md" href="tel:+18595371827"><span class="material-symbols-outlined text-secondary text-[18px]">call</span><span class="hidden sm:inline font-label-md text-label-md">+1 (859) 537-1827</span><span class="sm:hidden font-label-md text-label-md">Call</span></a><a class="bg-primary hover:bg-primary-container text-on-primary transition-colors px-space-md py-space-sm rounded-full font-label-lg text-label-lg hidden md:inline-flex items-center justify-center min-h-[48px]" data-path="book-ride" href="#">Book Dispatch</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-surface flex-1"><div class="max-w-[1280px] mx-auto px-margin py-space-lg"><div class="flex flex-col w-full">
+<section class="relative w-full py-space-xl">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-start">
+<div class="lg:col-span-7 flex flex-col space-y-space-lg">
+<div class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-full bg-surface-container w-fit shadow-sm">
+<span class="w-2.5 h-2.5 rounded-full bg-[#06C167]"></span>
+<span class="font-label-sm text-label-sm text-on-surface uppercase tracking-wider">Erlanger Fleet Active • Live Dispatch Desk</span>
+</div>
+<div class="space-y-space-md">
+<h1 class="font-headline-xl text-headline-xl text-primary tracking-tight leading-tight">
+            Reliable Local Transit Across Northern Kentucky &amp; CVG Airport
+          </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
+            Direct, guaranteed upfront pricing with strict zero-surge tariffs. Stationed directly in Erlanger, KY for immediate local dispatch, non-emergency medical routes, and prompt Cincinnati/Northern Kentucky International Airport transfers.
+          </p>
+</div>
+<div class="flex flex-wrap gap-space-xs pt-space-xs">
+<span class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-full bg-surface-container font-label-md text-label-md text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified</span>
+            Guaranteed Pricing
+          </span>
+<span class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-full bg-surface-container font-label-md text-label-md text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-secondary">trending_down</span>
+            No Surge Tariffs
+          </span>
+<span class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-full bg-surface-container font-label-md text-label-md text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-secondary">flight</span>
+            CVG Flight Monitoring
+          </span>
+<span class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-full bg-surface-container font-label-md text-label-md text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-secondary">medical_services</span>
+            Medical Transport Assistance
+          </span>
+</div>
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-space-md pt-space-sm">
+<a class="h-[52px] px-space-lg rounded-full bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg inline-flex items-center justify-center gap-space-sm shadow-md transition-all" href="tel:+18595371827">
+<span class="material-symbols-outlined text-[20px]">call</span>
+<span>Call Hotline: +1 (859) 537-1827</span>
+</a>
+<div class="flex items-center gap-space-sm px-space-md py-space-xs rounded-full bg-surface-container-low text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[18px] text-on-surface">schedule</span>
+<span>24/7 Priority Operators • Eastern Time</span>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-space-md pt-space-lg">
+<div class="p-space-md rounded-xl bg-surface-container-low shadow-sm">
+<span class="font-numeric-fare text-numeric-fare text-primary block">0%</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider block mt-space-xs">Surge Multiplier</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-1 block">Fixed contract tariffs across regional zones</span>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low shadow-sm">
+<span class="font-numeric-fare text-numeric-fare text-primary block">&lt; 8 min</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider block mt-space-xs">Erlanger Dispatch ETA</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-1 block">Dixie Hwy &amp; I-71/I-75 arterial coverage</span>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low shadow-sm">
+<span class="font-numeric-fare text-numeric-fare text-primary block">100%</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider block mt-space-xs">Licensed Transit</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-1 block">Liberty Ride NKY Trans, LLC authority</span>
+</div>
+</div>
+</div>
+<div class="lg:col-span-5 lg:sticky lg:top-24">
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-xl relative overflow-hidden">
+<div class="flex items-center justify-between pb-space-sm">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest block">Instant Fare Calculator</span>
+<h2 class="font-headline-md text-headline-md text-primary mt-space-xs">Get a Guaranteed Estimate</h2>
+</div>
+<span class="px-space-sm py-space-xs rounded-full bg-surface-container text-secondary font-label-sm text-label-sm flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-[#06C167]"></span>
+              Active
+            </span>
+</div>
+<form class="space-y-space-md mt-space-md" id="fareCalcForm" onsubmit="event.preventDefault(); window.calculateFare();">
+<div class="relative space-y-space-xs">
+<label class="font-label-md text-label-md text-on-surface block">Pickup Address (NKY Region)</label>
+<div class="relative flex items-center">
+<span class="absolute left-4 w-2 h-2 rounded-full bg-primary z-10"></span>
+<input class="w-full h-[50px] pl-9 pr-4 rounded-full bg-surface-container text-on-surface placeholder:text-on-surface-variant focus:bg-surface-container-lowest focus:outline-none focus:shadow-md font-body-md text-body-md transition-all" id="pickupInput" placeholder="Enter pickup address or hotel" required="" type="text" value="3038 Dixie Hwy, Erlanger, KY"/>
+</div>
+<div class="flex items-center gap-space-xs pt-1 overflow-x-auto">
+<button class="text-left px-space-sm py-space-xs rounded-full bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-sm text-label-sm whitespace-nowrap transition-colors" onclick="document.getElementById('pickupInput').value='3038 Dixie Hwy, Erlanger, KY'" type="button">
+                  Dixie Hwy Hub
+                </button>
+<button class="text-left px-space-sm py-space-xs rounded-full bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-sm text-label-sm whitespace-nowrap transition-colors" onclick="document.getElementById('pickupInput').value='Crestview Hills Town Center, KY'" type="button">
+                  Crestview Hills
+                </button>
+<button class="text-left px-space-sm py-space-xs rounded-full bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-sm text-label-sm whitespace-nowrap transition-colors" onclick="document.getElementById('pickupInput').value='Turfway Park Racing &amp; Gaming, Florence'" type="button">
+                  Florence Core
+                </button>
+</div>
+</div>
+<div class="relative space-y-space-xs">
+<label class="font-label-md text-label-md text-on-surface block">Dropoff Destination</label>
+<div class="relative flex items-center">
+<span class="absolute left-4 w-2 h-2 bg-primary z-10"></span>
+<input class="w-full h-[50px] pl-9 pr-4 rounded-full bg-surface-container text-on-surface placeholder:text-on-surface-variant focus:bg-surface-container-lowest focus:outline-none focus:shadow-md font-body-md text-body-md transition-all" id="dropoffInput" placeholder="Destination, clinic, or airport" required="" type="text" value="CVG Airport Terminal 3, Hebron, KY"/>
+</div>
+<div class="flex items-center gap-space-xs pt-1 overflow-x-auto">
+<button class="text-left px-space-sm py-space-xs rounded-full bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-sm text-label-sm whitespace-nowrap transition-colors" onclick="document.getElementById('dropoffInput').value='CVG Airport Terminal 3, Hebron, KY'" type="button">
+                  CVG Airport Terminal
+                </button>
+<button class="text-left px-space-sm py-space-xs rounded-full bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-sm text-label-sm whitespace-nowrap transition-colors" onclick="document.getElementById('dropoffInput').value='St. Elizabeth Healthcare, Edgewood, KY'" type="button">
+                  St. Elizabeth Edgewood
+                </button>
+<button class="text-left px-space-sm py-space-xs rounded-full bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-sm text-label-sm whitespace-nowrap transition-colors" onclick="document.getElementById('dropoffInput').value='Downtown Cincinnati, Fountain Square'" type="button">
+                  Downtown Cincy
+                </button>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
+<div class="space-y-space-xs">
+<label class="font-label-md text-label-md text-on-surface block">Pickup Date</label>
+<input class="w-full h-[50px] px-4 rounded-xl bg-surface-container text-on-surface focus:bg-surface-container-lowest focus:outline-none focus:shadow-md font-body-md text-body-md transition-all" id="rideDate" type="date"/>
+</div>
+<div class="space-y-space-xs">
+<label class="font-label-md text-label-md text-on-surface block">Time (Eastern EDT)</label>
+<input class="w-full h-[50px] px-4 rounded-xl bg-surface-container text-on-surface focus:bg-surface-container-lowest focus:outline-none focus:shadow-md font-body-md text-body-md transition-all" id="rideTime" type="time" value="08:30"/>
+</div>
+</div>
+<div class="space-y-space-xs">
+<label class="font-label-md text-label-md text-on-surface block">Service Category</label>
+<div class="grid grid-cols-2 gap-space-xs">
+<label class="cursor-pointer p-space-sm rounded-xl bg-surface-container has-[:checked]:bg-primary has-[:checked]:text-on-primary flex items-center gap-space-xs transition-colors">
+<input checked="" class="hidden" name="serviceClass" onchange="window.updateRateDisplay('cvg')" type="radio" value="cvg"/>
+<span class="material-symbols-outlined text-[18px]">flight_takeoff</span>
+<span class="font-label-md text-label-md">Airport CVG</span>
+</label>
+<label class="cursor-pointer p-space-sm rounded-xl bg-surface-container has-[:checked]:bg-primary has-[:checked]:text-on-primary flex items-center gap-space-xs transition-colors">
+<input class="hidden" name="serviceClass" onchange="window.updateRateDisplay('medical')" type="radio" value="medical"/>
+<span class="material-symbols-outlined text-[18px]">local_hospital</span>
+<span class="font-label-md text-label-md">Medical / Clinic</span>
+</label>
+<label class="cursor-pointer p-space-sm rounded-xl bg-surface-container has-[:checked]:bg-primary has-[:checked]:text-on-primary flex items-center gap-space-xs transition-colors">
+<input class="hidden" name="serviceClass" onchange="window.updateRateDisplay('business')" type="radio" value="business"/>
+<span class="material-symbols-outlined text-[18px]">business_center</span>
+<span class="font-label-md text-label-md">Business Transfer</span>
+</label>
+<label class="cursor-pointer p-space-sm rounded-xl bg-surface-container has-[:checked]:bg-primary has-[:checked]:text-on-primary flex items-center gap-space-xs transition-colors">
+<input class="hidden" name="serviceClass" onchange="window.updateRateDisplay('local')" type="radio" value="local"/>
+<span class="material-symbols-outlined text-[18px]">local_taxi</span>
+<span class="font-label-md text-label-md">Local Taxi Core</span>
+</label>
+</div>
+</div>
+<div class="space-y-space-xs">
+<label class="font-label-md text-label-md text-on-surface block">Special Dispatch Requirements (Optional)</label>
+<input class="w-full h-[50px] px-4 rounded-xl bg-surface-container text-on-surface placeholder:text-on-surface-variant focus:bg-surface-container-lowest focus:outline-none focus:shadow-md font-body-md text-body-md transition-all" placeholder="Luggage assistance, folding walker, quiet cabin..." type="text"/>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low flex items-center justify-between" id="farePreviewCard">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block uppercase">Guaranteed Flat Tariff</span>
+<span class="font-numeric-fare text-numeric-fare text-primary" id="fareDisplay">$35.00 Flat</span>
+<span class="font-body-sm text-body-sm text-secondary block mt-0.5" id="fareSubtext">CVG Airport Zone 1 Rate Applied</span>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-on-surface-variant block uppercase">Dispatch Horizon</span>
+<span class="font-numeric-eta text-numeric-eta text-primary block">Immediate / Pre-book</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">No peak surcharges</span>
+</div>
+</div>
+<button class="w-full h-[52px] rounded-full bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg transition-all shadow-md flex items-center justify-center gap-space-xs" type="submit">
+<span>Calculate Guaranteed Fare</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-center">
+              Quotes only — booking confirmed in next step with direct dispatcher assignment.
+            </p>
+</form>
+</div>
+</div>
+</div>
+</section>
+<section class="py-space-xl">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-space-lg gap-space-sm">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest block">Transparent Zone Tariffs</span>
+<h2 class="font-headline-lg text-headline-lg text-primary mt-space-xs">Fixed Rate Transit Matrix</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">
+        Predictable commercial transport with no volatile algorithm surges during severe weather, rush hour, or airport delays.
+      </p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<div class="rounded-xl p-space-lg bg-surface-container-low shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="px-space-sm py-space-xs rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface">Zone 01</span>
+<span class="w-2 h-2 rounded-full bg-[#06C167]"></span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary">CVG to Erlanger &amp; Immediate Corridor</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Includes airport terminal curbside pickups, Commonwealth Blvd, Mineola Pike, and Erlanger central hotel rows.</p>
+</div>
+<div class="pt-space-lg mt-space-md">
+<span class="font-label-sm text-label-sm text-on-surface-variant block uppercase">Guaranteed Flat</span>
+<span class="font-numeric-fare text-numeric-fare text-primary block mt-0.5">$35.00</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-space-xs">Tolls &amp; airport facility access included</span>
+</div>
+</div>
+<div class="rounded-xl p-space-lg bg-surface-container-low shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="px-space-sm py-space-xs rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface">Zone 02</span>
+<span class="w-2 h-2 rounded-full bg-[#06C167]"></span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Extended NKY &amp; Downtown Cincinnati</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Direct connections between Erlanger/Florence base and Covington, Newport riverfront, and Downtown Cincinnati core.</p>
+</div>
+<div class="pt-space-lg mt-space-md">
+<span class="font-label-sm text-label-sm text-on-surface-variant block uppercase">Guaranteed Flat</span>
+<span class="font-numeric-fare text-numeric-fare text-primary block mt-0.5">$45.00</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-space-xs">No bridge surcharge or idle traffic penalization</span>
+</div>
+</div>
+<div class="rounded-xl p-space-lg bg-surface-container-low shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="px-space-sm py-space-xs rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface">Zone 03</span>
+<span class="w-2 h-2 rounded-full bg-[#06C167]"></span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Regional Boone &amp; Kenton Outer</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Service to Union, Walton, Independence, Alexandria, and outer county commercial and residential sectors.</p>
+</div>
+<div class="pt-space-lg mt-space-md">
+<span class="font-label-sm text-label-sm text-on-surface-variant block uppercase">Base Meter Tariff</span>
+<span class="font-numeric-fare text-numeric-fare text-primary block mt-0.5">$15.00 Base</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-space-xs">+ $2.75 / standard statute mile</span>
+</div>
+</div>
+<div class="rounded-xl p-space-lg bg-surface-container-low shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="px-space-sm py-space-xs rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface">Medical</span>
+<span class="w-2 h-2 rounded-full bg-[#06C167]"></span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary">St. Elizabeth Clinics &amp; Hospitals</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Non-emergency scheduled transport to Edgewood, Florence, and Ft. Thomas healthcare facilities with patient escort courtesy.</p>
+</div>
+<div class="pt-space-lg mt-space-md">
+<span class="font-label-sm text-label-sm text-on-surface-variant block uppercase">Medical Dedicated</span>
+<span class="font-numeric-fare text-numeric-fare text-primary block mt-0.5">$20.00 Base</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-space-xs">+ $2.75 / statute mile • Round trips reserved</span>
+</div>
+</div>
+</div>
+</section>
+<section class="py-space-xl">
+<div class="rounded-xl bg-surface-container-low p-space-lg md:p-space-xl shadow-sm">
+<div class="max-w-2xl mb-space-lg">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest block">Operational Workflow</span>
+<h2 class="font-headline-lg text-headline-lg text-primary mt-space-xs">How Liberty Ride Works</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs">A frictionless, phone-supported dispatch system designed for reliability without battery-draining apps.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg relative">
+<div class="flex flex-col space-y-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="w-9 h-9 rounded-full bg-primary text-on-primary font-headline-sm text-headline-sm flex items-center justify-center">1</span>
+<span class="font-headline-sm text-headline-sm text-primary">Instant Upfront Estimate</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Select your corridor and receive an locked-in price quote before departure. No dynamic peak multipliers or unexpected bridge/traffic delay additions.
+          </p>
+<div class="p-space-sm rounded-lg bg-surface-container font-label-sm text-label-sm text-on-surface">
+            Guaranteed rate lock upon verification
+          </div>
+</div>
+<div class="flex flex-col space-y-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="w-9 h-9 rounded-full bg-primary text-on-primary font-headline-sm text-headline-sm flex items-center justify-center">2</span>
+<span class="font-headline-sm text-headline-sm text-primary">Dispatch Confirmation</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Our local desk assigns an Erlanger-based commercial vehicle immediately and generates a clean UUID transit record logged to our regional dispatch ledger.
+          </p>
+<div class="p-space-sm rounded-lg bg-surface-container font-label-sm text-label-sm text-on-surface">
+            Secure UUID tracking &amp; verified operator name
+          </div>
+</div>
+<div class="flex flex-col space-y-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="w-9 h-9 rounded-full bg-primary text-on-primary font-headline-sm text-headline-sm flex items-center justify-center">3</span>
+<span class="font-headline-sm text-headline-sm text-primary">Direct Status Updates</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Receive direct SMS alerts and telephone coordination with your dedicated driver. Zero background GPS data drain or mandatory software installations.
+          </p>
+<div class="p-space-sm rounded-lg bg-surface-container font-label-sm text-label-sm text-on-surface">
+            Direct driver telephone link &amp; SMS arrival pings
+          </div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-space-xl">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg">
+<div class="rounded-xl bg-surface-container-lowest p-space-lg shadow-md flex flex-col justify-between">
+<div class="space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="w-10 h-10 rounded-lg bg-primary text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">flight_land</span>
+</div>
+<span class="px-space-sm py-space-xs rounded-full bg-surface-container text-secondary font-label-sm text-label-sm">CVG Operations</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-primary">CVG Airport Flight Tracking &amp; Terminal Transfers</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs leading-relaxed">
+              We monitor inbound commercial airline schedules into CVG in real time. If your Delta, American, Allegiant, or United flight arrives ahead of schedule or faces tarmac delays, your pickup time adjusts automatically with zero wait fees.
+            </p>
+</div>
+<ul class="space-y-space-xs font-body-sm text-body-sm text-on-surface-variant">
+<li class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>Direct curbside baggage claim contact point</li>
+<li class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>Luggage loading and heavy equipment assistance included</li>
+<li class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>Receipts formatted for corporate expense filing</li>
+</ul>
+</div>
+<div class="pt-space-md mt-space-md">
+<a class="inline-flex items-center gap-space-xs font-label-md text-label-md text-primary hover:underline" href="tel:+18595371827">
+<span>Coordinate an Airport Dispatch</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="rounded-xl bg-surface-container-lowest p-space-lg shadow-md flex flex-col justify-between">
+<div class="space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="w-10 h-10 rounded-lg bg-primary text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">accessible</span>
+</div>
+<span class="px-space-sm py-space-xs rounded-full bg-surface-container text-secondary font-label-sm text-label-sm">Healthcare Mobility</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-primary">St. Elizabeth Non-Emergency Medical Transport</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs leading-relaxed">
+              Dependable transportation for clinic checkups, therapy, outpatient surgery, and rehabilitation centers across Northern Kentucky. Drivers provide patient-level attentiveness and door-to-door escort assistance.
+            </p>
+</div>
+<ul class="space-y-space-xs font-body-sm text-body-sm text-on-surface-variant">
+<li class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>Wheelchair and folding mobility walker stowage</li>
+<li class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>Scheduled multi-leg appointments with standby options</li>
+<li class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>Quiet, climate-controlled cabins for convalescent riders</li>
+</ul>
+</div>
+<div class="pt-space-md mt-space-md">
+<a class="inline-flex items-center gap-space-xs font-label-md text-label-md text-primary hover:underline" href="tel:+18595371827">
+<span>Book Clinic Transit Directly</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<section class="py-space-xl">
+<div class="rounded-xl bg-primary text-on-primary p-space-lg md:p-space-xl flex flex-col lg:flex-row items-center justify-between gap-space-lg shadow-xl">
+<div class="space-y-space-xs text-center lg:text-left">
+<span class="font-label-sm text-label-sm text-on-primary-container uppercase tracking-widest block">Immediate Kentucky Dispatch</span>
+<h2 class="font-headline-lg text-headline-lg text-on-primary">
+          Need Immediate Transit or Dispatch Questions?
+        </h2>
+<p class="font-body-md text-body-md text-inverse-primary max-w-xl">
+          Call our local Erlanger desk directly at <span class="text-on-primary font-label-md">+1 (859) 537-1827</span>. Speak to a live dispatcher stationed right here in Northern Kentucky.
+        </p>
+</div>
+<div class="flex flex-col sm:flex-row items-center gap-space-md w-full lg:w-auto">
+<a class="w-full sm:w-auto h-[52px] px-space-xl rounded-full bg-on-primary text-primary hover:bg-surface-container font-label-lg text-label-lg flex items-center justify-center gap-space-sm shadow-md transition-all" href="tel:+18595371827">
+<span class="material-symbols-outlined text-[20px]">call</span>
+<span>+1 (859) 537-1827</span>
+</a>
+<button class="w-full sm:w-auto h-[52px] px-space-lg rounded-full bg-primary-container text-on-primary hover:bg-tertiary-container font-label-md text-label-md flex items-center justify-center gap-space-xs transition-colors" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+<span>Quote Online</span>
+<span class="material-symbols-outlined text-[16px]">north</span>
+</button>
+</div>
+</div>
+</section>
+<script>
+    (function() {
+      // Set today's date into picker
+      const dateInput = document.getElementById('rideDate');
+      if (dateInput) {
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.value = today;
+      }
+
+      const fares = {
+        cvg: { amount: '$35.00 Flat', sub: 'CVG Airport Zone 1 Rate Applied' },
+        medical: { amount: '$20.00 Base', sub: '+ $2.75/mi • St. Elizabeth Corridor' },
+        business: { amount: '$45.00 Flat', sub: 'Zone 2 Executive & Downtown Corridor' },
+        local: { amount: '$15.00 Base', sub: '+ $2.75/mi • Erlanger Core Perimeter' }
+      };
+
+      window.updateRateDisplay = function(type) {
+        const fareDisplay = document.getElementById('fareDisplay');
+        const fareSubtext = document.getElementById('fareSubtext');
+        if (fareDisplay && fareSubtext && fares[type]) {
+          fareDisplay.textContent = fares[type].amount;
+          fareSubtext.textContent = fares[type].sub;
+        }
+      };
+
+      window.calculateFare = function() {
+        const pickup = document.getElementById('pickupInput').value;
+        const dropoff = document.getElementById('dropoffInput').value;
+        const selected = document.querySelector('input[name="serviceClass"]:checked').value;
+        const preview = document.getElementById('farePreviewCard');
+        
+        if (preview) {
+          preview.classList.add('bg-surface-variant');
+          setTimeout(() => preview.classList.remove('bg-surface-variant'), 400);
+        }
+
+        const msg = "Estimated guaranteed fare locked for " + (pickup.split(',')[0] || "pickup") + " to " + (dropoff.split(',')[0] || "destination") + ". Please call +1 (859) 537-1827 to confirm immediate dispatch driver assignment.";
+        alert(msg);
+      };
+    })();
+  </script>
+</div></div></main><footer class="w-full bg-surface-container-low mt-auto"><div class="max-w-[1280px] mx-auto px-margin py-space-xl"><div class="grid grid-cols-1 md:grid-cols-4 gap-space-lg mb-space-xl"><div class="space-y-space-sm md:col-span-1"><div class="flex items-center gap-space-xs"><div class="w-7 h-7 rounded-DEFAULT bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[16px]">local_taxi</span></div><span class="font-headline-sm text-headline-sm text-primary tracking-tight">LIBERTY RIDE</span></div><p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">Precision on-demand mobility, flat-rate airport transfers, and non-emergency medical transit across Northern Kentucky.</p><div class="inline-flex items-center gap-space-xs px-space-sm py-space-xs rounded-full bg-surface-container text-secondary font-label-sm text-label-sm"><span class="w-2 h-2 rounded-full bg-secondary"></span><span>OPERATIONAL • EASTERN TIME</span></div></div><div class="space-y-space-sm"><span class="font-label-lg text-label-lg text-primary block">Service Zones</span><ul class="space-y-space-xs font-body-sm text-body-sm text-on-surface-variant"><li>Erlanger City Core</li><li>Cincinnati/NKY Airport (CVG)</li><li>Florence &amp; Crestview Hills</li><li>Greater Cincinnati Metro</li><li>St. Elizabeth Healthcare Sites</li></ul></div><div class="space-y-space-sm"><span class="font-label-lg text-label-lg text-primary block">Dispatch Access</span><ul class="space-y-space-xs font-body-sm text-body-sm text-on-surface-variant"><li><a class="hover:text-primary transition-colors flex items-center gap-space-xs" href="tel:+18595371827"><span class="material-symbols-outlined text-[14px]">call</span>+1 (859) 537-1827</a></li><li><span class="block">Dispatch Desk: 24/7 Priority</span></li><li><span class="block">Operating Base: Erlanger, KY</span></li><li><span class="block">Schedule Horizon: Real-time &amp; Pre-booked</span></li></ul></div><div class="space-y-space-sm"><span class="font-label-lg text-label-lg text-primary block">Legal &amp; Authority</span><p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">Registered regional commercial operator: <span class="text-on-surface font-label-md text-label-md block mt-space-xs">Liberty Ride NKY Trans, LLC</span>Operating within local, state, and airport authority transit regulations.</p></div></div><div class="pt-space-md bg-surface-container-high/40 rounded-lg p-space-md flex flex-col md:flex-row items-center justify-between gap-space-sm text-on-surface-variant"><span class="font-body-sm text-body-sm">© 2024 Liberty Ride NKY Trans, LLC. All rights reserved. Erlanger, KY Operating Perimeter.</span><div class="flex items-center gap-space-md"><span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">KY Regional Carrier</span><a class="font-label-sm text-label-sm text-primary hover:underline" href="tel:+18595371827">Hotline: +1 (859) 537-1827</a></div></div></div></footer></body></html>

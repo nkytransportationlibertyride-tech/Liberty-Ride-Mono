@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface-container-low":"#f5f3f3","on-primary-container":"#858383","surface-container":"#efeded","on-background":"#1b1c1c","on-tertiary-container":"#868381","surface-container-high":"#e9e8e7","secondary-container":"#66fe9c","primary":"#000000","on-secondary-fixed-variant":"#005228","outline-variant":"#c4c7c7","outline":"#747878","primary-container":"#1c1b1b","primary-fixed-dim":"#c8c6c5","secondary-fixed":"#66fe9c","primary-fixed":"#e5e2e1","surface-variant":"#e3e2e2","error":"#ba1a1a","on-surface":"#1b1c1c","on-error-container":"#93000a","secondary":"#006d37","on-primary-fixed":"#1c1b1b","on-secondary":"#ffffff","surface-bright":"#fbf9f9","inverse-primary":"#c8c6c5","on-secondary-container":"#00743b","tertiary-container":"#1d1b1a","on-tertiary":"#ffffff","on-error":"#ffffff","on-primary-fixed-variant":"#474646","surface":"#fbf9f9","on-tertiary-fixed-variant":"#484645","on-secondary-fixed":"#00210d","surface-container-highest":"#e3e2e2","tertiary-fixed-dim":"#cac6c3","surface-container-lowest":"#ffffff","error-container":"#ffdad6","inverse-surface":"#303031","on-surface-variant":"#444748","on-tertiary-fixed":"#1d1b1a","surface-tint":"#5f5e5e","tertiary-fixed":"#e6e1df","on-primary":"#ffffff","background":"#fbf9f9","inverse-on-surface":"#f2f0f0","tertiary":"#000000","secondary-fixed-dim":"#44e183","surface-dim":"#dbdad9"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{"space-xl":"2rem","space-xs":"0.25rem",gutter:"1rem","space-lg":"1.5rem","space-md":"1rem","space-sm":"0.5rem",margin:"1rem"},fontFamily:{"headline-sm":["Inter"],"headline-xl-mobile":["Inter"],"body-md":["Inter"],"numeric-eta":["Inter"],"headline-lg":["Inter"],"label-sm":["Inter"],"headline-lg-mobile":["Inter"],"headline-xl":["Inter"],"numeric-fare":["Inter"],"label-lg":["Inter"],"label-md":["Inter"],"body-sm":["Inter"],"body-lg":["Inter"],"headline-md":["Inter"]},fontSize:{"headline-sm":["16px",{lineHeight:"22px",letterSpacing:"0em",fontWeight:"600"}],"headline-xl-mobile":["28px",{lineHeight:"34px",letterSpacing:"-0.02em",fontWeight:"700"}],"body-md":["14px",{lineHeight:"20px",letterSpacing:"0em",fontWeight:"400"}],"numeric-eta":["14px",{lineHeight:"18px",letterSpacing:"0em",fontWeight:"600"}],"headline-lg":["28px",{lineHeight:"36px",letterSpacing:"-0.015em",fontWeight:"700"}],"label-sm":["11px",{lineHeight:"14px",letterSpacing:"0.04em",fontWeight:"700"}],"headline-lg-mobile":["22px",{lineHeight:"28px",letterSpacing:"-0.01em",fontWeight:"700"}],"headline-xl":["36px",{lineHeight:"44px",letterSpacing:"-0.02em",fontWeight:"700"}],"numeric-fare":["22px",{lineHeight:"26px",letterSpacing:"-0.02em",fontWeight:"700"}],"label-lg":["15px",{lineHeight:"20px",letterSpacing:"-0.01em",fontWeight:"600"}],"label-md":["13px",{lineHeight:"18px",letterSpacing:"0em",fontWeight:"600"}],"body-sm":["12px",{lineHeight:"16px",letterSpacing:"0.01em",fontWeight:"400"}],"body-lg":["16px",{lineHeight:"24px",letterSpacing:"0em",fontWeight:"400"}],"headline-md":["20px",{lineHeight:"26px",letterSpacing:"-0.01em",fontWeight:"600"}]}}}};</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 max-w-[1280px] mx-auto px-space-md flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm"><span class="font-headline-sm text-headline-sm uppercase tracking-tight text-on-surface">Liberty Ride</span><span class="px-space-xs py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm tracking-wide uppercase">Owner Console</span></div><nav class="hidden lg:flex items-center gap-space-xs p-1 rounded-full bg-surface-container-low" data-active-classes="bg-primary text-on-primary font-label-md rounded-full"><a class="px-space-md py-1.5 rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-label-md text-label-md transition-colors" data-path="operations-dashboard" href="#">Operations Dashboard</a><a class="px-space-md py-1.5 rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-label-md text-label-md transition-colors" data-path="rides-management" href="#">Rides Management</a><a class="px-space-md py-1.5 rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-label-md text-label-md transition-colors" data-path="drivers-zones" href="#">Drivers & Zones</a><a class="px-space-md py-1.5 rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-label-md text-label-md transition-colors" data-path="security-gate" href="#">Security Gate</a></nav></div><div class="flex items-center gap-space-md"><div class="hidden sm:flex items-center gap-space-xs px-space-sm py-1 rounded bg-surface-container-low"><span class="material-symbols-outlined text-[16px] text-on-surface-variant">schedule</span><span class="font-numeric-eta text-numeric-eta text-on-surface">04:45 PM EDT</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">America/New_York</span></div><button aria-label="Sound alerts" class="w-10 h-10 rounded-full bg-surface-container-low hover:bg-surface-container-high flex items-center justify-center text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">notifications_active</span></button><a class="h-10 px-space-md rounded-full bg-surface-container-low hover:bg-surface-container-high text-on-surface flex items-center gap-space-xs font-label-md text-label-md transition-colors" data-path="lock-screen" href="#"><span class="material-symbols-outlined text-[18px]">lock</span><span>Lock Console</span></a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 bg-surface"><div class="max-w-[1280px] mx-auto px-space-md py-space-lg"><div class="flex flex-col w-full">
+<!-- Operational Sub-Header Bar -->
+<div class="flex flex-col md:flex-row md:items-center justify-between pb-space-lg mb-space-lg">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Regional Operations / Fleet Provisioning</span>
+<span class="w-1 h-1 rounded-full bg-outline"></span>
+<span class="font-label-sm text-label-sm text-secondary uppercase font-semibold">Live Dispatch Channel</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Drivers & Fleet Management</h1>
+</div>
+<!-- Security Anchor & Eastern Precision Clock -->
+<div class="flex items-center gap-space-sm mt-space-sm md:mt-0">
+<div class="flex items-center gap-space-xs px-space-md py-2 rounded-full bg-surface-container-low shadow-sm">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">verified_user</span>
+<span class="font-label-md text-label-md text-on-surface">Console Authenticated</span>
+</div>
+<div class="flex items-center gap-space-xs px-space-md py-2 rounded-full bg-surface-container-high text-on-surface shadow-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary">schedule</span>
+<span class="font-numeric-eta text-numeric-eta" id="live-time-ny">04:45:00 PM EDT</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">America/New_York</span>
+</div>
+</div>
+</div>
+<!-- Primary Asymmetric Two-Column Console Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- LEFT COLUMN: Creation & Feedback Workflow (PROMPT 4 View A) -->
+<div class="lg:col-span-5 flex flex-col gap-space-lg">
+<!-- Driver Creation Container -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md relative overflow-hidden">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Create New Driver</h2>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">KY-DOT REG</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Enroll credentialed transit drivers for Erlanger, Boone, Kenton, and Campbell County routes.
+        </p>
+<!-- Driver Creation Form -->
+<form class="flex flex-col gap-space-md mt-space-xs" id="create-driver-form" onsubmit="event.preventDefault(); handleDriverSubmit();">
+<!-- Field 1: Driver reference -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex justify-between items-baseline">
+<label class="font-label-md text-label-md text-on-surface" for="driver-ref">Driver reference</label>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Auto-derived UID</span>
+</div>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-space-md text-[18px] text-outline">badge</span>
+<input class="w-full h-[50px] pl-11 pr-space-md bg-surface-container-low rounded-xl font-numeric-eta text-numeric-eta text-on-surface focus:outline-none cursor-not-allowed selection:bg-surface-container-highest" id="driver-ref" readonly="" type="text" value="8595371827"/>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-tight">
+              (Convention: the driver phone number without spaces or symbols, e.g. <span class="font-semibold text-on-surface">8595371827</span>)
+            </p>
+</div>
+<!-- Field 2: Phone Input -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface" for="driver-phone">Phone</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-space-md text-[18px] text-outline">call</span>
+<input class="w-full h-[50px] pl-11 pr-space-md bg-surface-container-low focus:bg-surface-container-lowest rounded-xl font-body-md text-body-md text-on-surface placeholder:text-outline focus:ring-2 focus:ring-primary transition-all" id="driver-phone" oninput="syncReference(this.value)" placeholder="+1 (859) 537-1827" required="" type="tel" value="+1 (859) 537-1827"/>
+</div>
+<div class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+<span class="font-body-sm text-body-sm">Standard US E.164 regional formatting validated</span>
+</div>
+</div>
+<!-- Field 3: Display Name Input -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface" for="driver-name">Display name</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-space-md text-[18px] text-outline">person</span>
+<input class="w-full h-[50px] pl-11 pr-space-md bg-surface-container-low focus:bg-surface-container-lowest rounded-xl font-body-md text-body-md text-on-surface placeholder:text-outline focus:ring-2 focus:ring-primary transition-all" id="driver-name" placeholder="e.g. Marcus Vance" required="" type="text" value="Marcus Vance"/>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Full legal identity matching Commonwealth driver licensing records.</span>
+</div>
+<!-- Action Button -->
+<div class="pt-space-xs">
+<button class="w-full h-[52px] rounded-full bg-primary hover:bg-neutral-800 active:bg-neutral-900 text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-space-xs transition-colors shadow-sm" type="submit">
+<span class="material-symbols-outlined text-[20px]">person_add</span>
+<span>Create driver</span>
+</button>
+</div>
+</form>
+</div>
+<!-- Explicit Success Confirmation Card (PROMPT 4 View A Result) -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md transition-all" id="success-confirmation-card">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-[20px] font-bold">check</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wide text-secondary font-bold">Provisioned</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Driver Successfully Created</h3>
+</div>
+</div>
+<span class="font-label-sm text-label-sm px-space-sm py-1 rounded-full bg-surface-container-low text-on-surface-variant">ID #9042</span>
+</div>
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between py-1">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Display name</span>
+<span class="font-label-md text-label-md text-on-surface" id="confirm-name">Marcus Vance</span>
+</div>
+<div class="flex items-center justify-between py-1">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Phone</span>
+<a class="font-label-md text-label-md text-on-surface hover:text-secondary flex items-center gap-1 underline decoration-outline-variant underline-offset-4" href="tel:+18595371827" id="confirm-phone">
+<span class="material-symbols-outlined text-[14px]">call</span>
+<span>+1 (859) 537-1827</span>
+</a>
+</div>
+<div class="flex items-center justify-between py-1">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Driver reference</span>
+<span class="font-numeric-eta text-numeric-eta text-on-surface bg-surface-container-high px-2 py-0.5 rounded" id="confirm-ref">8595371827</span>
+</div>
+<div class="flex items-center justify-between py-1">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Status</span>
+<div class="flex items-center gap-space-xs px-2.5 py-1 rounded-full bg-surface-container-lowest">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm text-on-surface uppercase">Active • Ready for dispatch assignments</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Assigned Depot: Erlanger Central</span>
+<button class="font-label-md text-label-md text-on-surface hover:underline flex items-center gap-1" onclick="alert('SMS on-boarding key dispatched to +1 (859) 537-1827')" type="button">
+<span class="material-symbols-outlined text-[16px]">send_to_mobile</span>
+<span>Send Credential SMS</span>
+</button>
+</div>
+</div>
+<!-- Quick Operations Dispatch Guide Card -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex items-start gap-space-md">
+<span class="material-symbols-outlined text-[24px] text-on-surface mt-0.5">local_shipping</span>
+<div class="flex flex-col gap-0.5">
+<span class="font-label-md text-label-md text-on-surface">Vehicle Assignment Rule</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Newly registered drivers require vehicle inspection sign-off within 72 hours under KY DOT Rule 409-B. Contact fleet manager at <span class="font-semibold text-on-surface">+1 (859) 537-1827</span> for equipment issuance.
+          </p>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Active Roster, Zones, Empty & System States -->
+<div class="lg:col-span-7 flex flex-col gap-space-lg">
+<!-- Active Drivers Roster Card -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Active Drivers Roster</h2>
+<span class="ml-2 px-space-xs py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">4 Drivers Active</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="h-8 px-space-sm rounded-full bg-surface-container-low hover:bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center gap-1 transition-colors" type="button">
+<span class="material-symbols-outlined text-[14px]">tune</span>
+<span>Filter Zones</span>
+</button>
+<button class="h-8 px-space-sm rounded-full bg-surface-container-low hover:bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center gap-1 transition-colors" type="button">
+<span class="material-symbols-outlined text-[14px]">download</span>
+<span>CSV</span>
+</button>
+</div>
+</div>
+<!-- Drivers Data Grid Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-space-sm px-space-md rounded-l-lg">Driver / Name</th>
+<th class="py-space-sm px-space-md">Phone Contact</th>
+<th class="py-space-sm px-space-md">Driver Ref</th>
+<th class="py-space-sm px-space-md text-center">Rides</th>
+<th class="py-space-sm px-space-md rounded-r-lg text-right">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container" id="driver-roster-body">
+<!-- Driver 1: Marcus Vance (Prompt Spec Focus) -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-md px-space-md font-label-md text-label-md text-on-surface">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-on-surface text-xs">
+                      MV
+                    </div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm">Marcus Vance</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Toyota Camry Hybrid #11</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md font-body-md text-body-md text-on-surface whitespace-nowrap">
+<a class="hover:underline flex items-center gap-1" href="tel:+18595371827">
+<span class="material-symbols-outlined text-[14px] text-outline">call</span>
+                    +1 (859) 537-1827
+                  </a>
+</td>
+<td class="py-space-md px-space-md font-numeric-eta text-numeric-eta text-on-surface">
+<span class="bg-surface-container-low px-2 py-1 rounded">8595371827</span>
+</td>
+<td class="py-space-md px-space-md text-center font-numeric-fare text-headline-sm text-on-surface">
+                  14
+                </td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-1 rounded-full bg-surface-container-low font-label-sm text-label-sm uppercase">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="text-on-surface">On Shift</span>
+</span>
+</td>
+</tr>
+<!-- Driver 2: Dale R. Hoskins -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-md px-space-md font-label-md text-label-md text-on-surface">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-on-surface text-xs">
+                      DH
+                    </div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm">Dale R. Hoskins</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Ford Transit Van #04</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md font-body-md text-body-md text-on-surface whitespace-nowrap">
+<a class="hover:underline flex items-center gap-1" href="tel:+18595371827">
+<span class="material-symbols-outlined text-[14px] text-outline">call</span>
+                    +1 (859) 537-1827
+                  </a>
+</td>
+<td class="py-space-md px-space-md font-numeric-eta text-numeric-eta text-on-surface">
+<span class="bg-surface-container-low px-2 py-1 rounded">8594918200</span>
+</td>
+<td class="py-space-md px-space-md text-center font-numeric-fare text-headline-sm text-on-surface">
+                  29
+                </td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-1 rounded-full bg-surface-container-low font-label-sm text-label-sm uppercase">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="text-on-surface">Active</span>
+</span>
+</td>
+</tr>
+<!-- Driver 3: Sarah Lindley -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-md px-space-md font-label-md text-label-md text-on-surface">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-on-surface text-xs">
+                      SL
+                    </div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm">Sarah Lindley</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Chevy Suburban (WAV) #02</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md font-body-md text-body-md text-on-surface whitespace-nowrap">
+<a class="hover:underline flex items-center gap-1" href="tel:+18595371827">
+<span class="material-symbols-outlined text-[14px] text-outline">call</span>
+                    +1 (859) 537-1827
+                  </a>
+</td>
+<td class="py-space-md px-space-md font-numeric-eta text-numeric-eta text-on-surface">
+<span class="bg-surface-container-low px-2 py-1 rounded">8593419088</span>
+</td>
+<td class="py-space-md px-space-md text-center font-numeric-fare text-headline-sm text-on-surface">
+                  42
+                </td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-1 rounded-full bg-surface-container-low font-label-sm text-label-sm uppercase">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="text-on-surface">On Shift</span>
+</span>
+</td>
+</tr>
+<!-- Driver 4: Tyler Goebel -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-md px-space-md font-label-md text-label-md text-on-surface">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-on-surface text-xs">
+                      TG
+                    </div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm">Tyler Goebel</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Chrysler Pacifica #09</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md font-body-md text-body-md text-on-surface whitespace-nowrap">
+<a class="hover:underline flex items-center gap-1" href="tel:+18595371827">
+<span class="material-symbols-outlined text-[14px] text-outline">call</span>
+                    +1 (859) 537-1827
+                  </a>
+</td>
+<td class="py-space-md px-space-md font-numeric-eta text-numeric-eta text-on-surface">
+<span class="bg-surface-container-low px-2 py-1 rounded">8597274411</span>
+</td>
+<td class="py-space-md px-space-md text-center font-numeric-fare text-headline-sm text-on-surface">
+                  18
+                </td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-1 rounded-full bg-surface-container-low font-label-sm text-label-sm uppercase">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="text-on-surface">Active</span>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Read-Only Zones & Rate Card -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[20px] text-on-surface">map</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Territory Zones & Fixed Base Rates</h3>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Erlanger • NKY Metro Hub</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-space-sm">
+<!-- Zone 1 -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col justify-between gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-bold text-on-surface">ZONE 1</span>
+<span class="w-2 h-2 rounded-full bg-on-surface"></span>
+</div>
+<span class="font-numeric-fare text-numeric-fare text-on-surface">$35</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Erlanger Core</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Flat city rate</span>
+</div>
+</div>
+<!-- Zone 2 -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col justify-between gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-bold text-on-surface">ZONE 2</span>
+<span class="w-2 h-2 rounded-full bg-on-surface"></span>
+</div>
+<span class="font-numeric-fare text-numeric-fare text-on-surface">$45</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">CVG / Boone County</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Airport & Florence</span>
+</div>
+</div>
+<!-- Zone 3 -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col justify-between gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-bold text-on-surface">ZONE 3</span>
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+</div>
+<span class="font-numeric-fare text-numeric-fare text-on-surface">$15<span class="text-body-sm text-on-surface-variant font-normal"> +$2.75/mi</span></span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Greater NKY Outer</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Beyond 12-mi radius</span>
+</div>
+</div>
+<!-- Medical Zone -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col justify-between gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-bold text-secondary">MEDICAL</span>
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+</div>
+<span class="font-numeric-fare text-numeric-fare text-on-surface">$20<span class="text-body-sm text-on-surface-variant font-normal"> +$2.75/mi</span></span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">St. Elizabeth / Clinic</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Priority clinic transport</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Status Components Stack: Empty State & Error State Display -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Empty State Component Example -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col items-center text-center justify-between gap-space-md">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[24px]">person_off</span>
+</div>
+<div class="flex flex-col gap-1">
+<h4 class="font-headline-md text-headline-md text-on-surface">No inactive drivers found</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              All 4 credentialed operators in Erlanger are presently clocked in or fulfilling active dispatched manifests.
+            </p>
+</div>
+<button class="h-10 px-space-lg rounded-full bg-surface-container-low hover:bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center gap-space-xs transition-colors" onclick="mockRefreshShift(this)" type="button">
+<span class="material-symbols-outlined text-[16px]">sync</span>
+<span>Refresh Shifts</span>
+</button>
+</div>
+<!-- Error State Component Example -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col items-center text-center justify-between gap-space-md">
+<div class="w-12 h-12 rounded-full bg-error-container flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-[24px]">signal_disconnected</span>
+</div>
+<div class="flex flex-col gap-1">
+<h4 class="font-headline-md text-headline-md text-on-surface">Unable to reach driver dispatch service</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Telemetry heartbeat dropped for regional gateway node. Please check your data connection or call <span class="font-semibold text-on-surface">+1 (859) 537-1827</span>.
+            </p>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="h-10 px-space-md rounded-full bg-primary text-on-primary hover:bg-neutral-800 font-label-md text-label-md flex items-center gap-1 transition-colors" onclick="mockRetryConnection(this)" type="button">
+<span class="material-symbols-outlined text-[16px]">refresh</span>
+<span>Retry</span>
+</button>
+<a class="h-10 px-space-md rounded-full bg-surface-container-low hover:bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center gap-1 transition-colors" href="tel:+18595371827">
+<span class="material-symbols-outlined text-[16px]">call</span>
+<span>Call Dispatch</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Dynamic Realtime Clock for America/New_York (Eastern Time)
+  function updateLiveTime() {
+    const timeEl = document.getElementById('live-time-ny');
+    if (!timeEl) return;
+    try {
+      const now = new Date();
+      const options = {
+        timeZone: 'America/New_York',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true
+      };
+      const formatted = new Intl.DateTimeFormat('en-US', options).format(now);
+      timeEl.textContent = formatted + ' EDT';
+    } catch (e) {
+      // Fallback
+      timeEl.textContent = '04:45:00 PM EDT';
+    }
+  }
+  setInterval(updateLiveTime, 1000);
+  updateLiveTime();
+
+  // Reference syncing according to convention (digits only)
+  function syncReference(phoneVal) {
+    const refInput = document.getElementById('driver-ref');
+    if (!refInput) return;
+    const digitsOnly = phoneVal.replace(/\D/g, '');
+    refInput.value = digitsOnly || '8595371827';
+  }
+
+  // Handle Driver Submit and update confirmation banner
+  function handleDriverSubmit() {
+    const nameVal = document.getElementById('driver-name').value.trim() || 'Marcus Vance';
+    const phoneVal = document.getElementById('driver-phone').value.trim() || '+1 (859) 537-1827';
+    const refVal = document.getElementById('driver-ref').value.trim() || '8595371827';
+
+    // Update Confirmation Card
+    const confirmName = document.getElementById('confirm-name');
+    const confirmPhone = document.getElementById('confirm-phone');
+    const confirmRef = document.getElementById('confirm-ref');
+    const card = document.getElementById('success-confirmation-card');
+
+    if (confirmName) confirmName.textContent = nameVal;
+    if (confirmPhone) {
+      confirmPhone.textContent = phoneVal;
+      confirmPhone.setAttribute('href', 'tel:' + phoneVal.replace(/[^+\d]/g, ''));
+    }
+    if (confirmRef) confirmRef.textContent = refVal;
+
+    // Visual feedback pop
+    if (card) {
+      card.classList.add('ring-2', 'ring-secondary');
+      setTimeout(() => {
+        card.classList.remove('ring-2', 'ring-secondary');
+      }, 1400);
+    }
+  }
+
+  // Mock handlers
+  function mockRefreshShift(btn) {
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<span class="material-symbols-outlined text-[16px] animate-spin">refresh</span><span>Checking...</span>';
+    setTimeout(() => {
+      btn.innerHTML = originalText;
+    }, 800);
+  }
+
+  function mockRetryConnection(btn) {
+    const original = btn.innerHTML;
+    btn.innerHTML = '<span class="material-symbols-outlined text-[16px] animate-spin">refresh</span><span>Connecting...</span>';
+    setTimeout(() => {
+      btn.innerHTML = original;
+      alert('Dispatch heartbeat re-established with Kentucky node.');
+    }, 900);
+  }
+</script></div></main><footer class="w-full bg-surface-container-low py-space-lg"><div class="max-w-[1280px] mx-auto px-space-md flex flex-col md:flex-row items-center justify-between gap-space-md"><div class="flex flex-col md:flex-row items-center gap-space-md"><span class="font-label-md text-label-md text-on-surface">Liberty Ride NKY Trans, LLC</span><span class="text-on-surface-variant font-body-sm text-body-sm">Erlanger, KY • Dispatch Support +1 (859) 537-1827</span></div><div class="flex items-center gap-space-md"><span class="font-label-sm text-label-sm text-on-surface-variant">Operational Console v2.4</span><span class="w-2 h-2 rounded-full bg-secondary"></span><span class="font-label-sm text-label-sm text-on-surface">Systems Operational</span></div></div></footer></body></html>
