@@ -18,7 +18,17 @@ the verified cutover — see "Cutover" below.
 | ID | Name | State | Webhook |
 |---|---|---|---|
 | 6792449 | W1 Voice Booking Commit | ACTIVE (legacy, dashboard-built) | `https://hook.us2.make.com/ju0gmo6ihjcgznm32ty6h8bumxiqnvrn` |
-| 6793518 | W1 Voice Booking Commit v2 | INACTIVE (verified wiring; auto-stopped after placeholder-auth error — reactivate after secrets) | `https://hook.us2.make.com/ud1125jgbr54ieqs46nuert9jbvagyid` |
+| 6793518 | W1 Voice Booking Commit v2 | INACTIVE (superseded by v3) | `https://hook.us2.make.com/ud1125jgbr54ieqs46nuert9jbvagyid` |
+| 6817797 | W1 Voice Booking Commit v3 | ACTIVE (verified — Supabase connection, no literal keys) | `https://hook.us2.make.com/jui46xdyx8r3pu3dlovk46hr4idvb9my` |
+
+- 6817797 (v3): built via the Make scenario-management MCP server
+  from `scenarios/w1-v3-connection.json`, then an editor pass
+  (headers + 10-field detection). Modules 3–4 are
+  `supabase:makeAnApiCall` on connection 12014112 ("Liberty's
+  Supabase connection"). Verified 2026-10-28: fake booking
+  `f385d248-…`, INTAKE_VALIDATED, 47.50 $. See
+  `scenarios/w1-v3-connection.NOTES.md`. Credentials live in W0 —
+  see `W0-CREDENTIALS.md`.
 
 - 6792449: built by clicking. Its canvas links were never part of the
   stored execution flow (webhook ran alone). Do NOT edit it. It stays
@@ -31,13 +41,14 @@ the verified cutover — see "Cutover" below.
   `issue_quote_token` → Supabase refused "Unauthorized" (expected:
   placeholder key). See the NOTES file for the full verification log.
 
-## Placeholders (6) — the owner fills these in the editor
+## Placeholders (v2 only — v3 carries no literal keys)
 
-- `PASTE_SUPABASE_SERVICE_ROLE_KEY_HERE` — 4 header values across
-  the 2 HTTP modules (`apikey` + `Authorization: Bearer ...`).
-- `PASTE_VAPI_SHARED_SECRET_HERE` — 2 filter values (gate arms).
-  The owner chooses this secret; the same value goes into the Vapi
-  tool header later. Runbook: `runbooks/fill-secrets.md`.
+- v2 `PASTE_SUPABASE_SERVICE_ROLE_KEY_HERE` — 4 header values across
+  the 2 HTTP modules. Superseded: v3 uses the Supabase connection
+  (W0). Do not fill v2.
+- `PASTE_VAPI_SHARED_SECRET_HERE` — 2 filter values (gate arms, v2
+  and v3). The owner chooses this secret; the same value goes into
+  the Vapi tool header later. Runbook: `runbooks/fill-secrets.md`.
 
 ## Two facts that cost hours — read before touching webhooks
 
@@ -61,9 +72,8 @@ the verified cutover — see "Cutover" below.
 ## Cutover (n8n → Make)
 
 n8n (8 workflows, Amd-PC + Tailscale funnel) STAYS ALIVE until the
-verified cutover: v2 active + secrets filled + real booking id +
-Supabase receipts, then Vapi tools re-pointed to the v2 webhook,
-then n8n off. Voice-path gaps carried over: shared Vapi secret on
+verified cutover: v3 active + real booking id + Supabase receipts,
+then Vapi tools re-pointed to the v3 webhook, then n8n off. Voice-path gaps carried over: shared Vapi secret on
 both sides, driver-selection rework, Google Maps key for voice
 quotes. Twilio and Telegram are OUT, permanently — confirmations
 and driver lease offers are Vapi voice calls.

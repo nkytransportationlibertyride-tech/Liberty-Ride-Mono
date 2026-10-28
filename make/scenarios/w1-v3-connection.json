@@ -1,0 +1,141 @@
+{
+ "modules": [
+  {
+   "config": {},
+   "id": 1,
+   "label": "W1 Voice Booking Commit v3",
+   "module": "gateway:CustomWebHook",
+   "root": "main",
+   "version": 1
+  },
+  {
+   "config": {},
+   "follows": 1,
+   "id": 2,
+   "label": "Secret gate",
+   "module": "builtin:BasicRouter",
+   "version": 1
+  },
+  {
+   "config": {
+    "mapper": {
+     "body": "{\n  \"p_service_type\": \"{{1.service_type}}\",\n  \"p_distance_miles\": {{1.distance_miles}},\n  \"p_pickup_address\": \"{{1.pickup_address}}\",\n  \"p_dropoff_address\": \"{{1.dropoff_address}}\",\n  \"p_pickup_datetime\": \"{{1.pickup_datetime}}\",\n  \"p_zone_code\": \"{{1.zone_code}}\"\n}",
+     "headers": [
+      {
+       "key": "Content-Type",
+       "value": "application/json"
+      }
+     ],
+     "method": "POST",
+     "url": "/rest/v1/rpc/issue_quote_token"
+    },
+    "parameters": {
+     "__IMTCONN__": 12014112
+    }
+   },
+   "filter": {
+    "conditions": [
+     [
+      {
+       "a": "{{first(map(1.__IMTHEADERS__; \"value\"; \"name\"; \"x-vapi-secret\"))}}",
+       "b": "PASTE_VAPI_SHARED_SECRET_HERE",
+       "o": "text:equal"
+      }
+     ]
+    ],
+    "name": "x-vapi-secret check"
+   },
+   "id": 3,
+   "label": "Issue quote token",
+   "module": "supabase:makeAnApiCall",
+   "parent": {
+    "index": 0,
+    "kind": "route",
+    "moduleId": 2
+   },
+   "version": 1
+  },
+  {
+   "config": {
+    "mapper": {
+     "body": "{\n  \"p_customer_name\": \"{{1.customer_name}}\",\n  \"p_customer_phone\": \"{{1.customer_phone}}\",\n  \"p_service_type\": \"{{1.service_type}}\",\n  \"p_pickup_address\": \"{{1.pickup_address}}\",\n  \"p_dropoff_address\": \"{{1.dropoff_address}}\",\n  \"p_pickup_datetime\": \"{{1.pickup_datetime}}\",\n  \"p_flight_number\": \"{{1.flight_number}}\",\n  \"p_special_needs\": \"{{1.special_needs}}\",\n  \"p_quote_token\": \"{{3.body.quote_token}}\",\n  \"p_quoted_fare\": {{3.body.fare}},\n  \"p_actor\": \"vapi\",\n  \"p_zone_code\": \"{{1.zone_code}}\",\n  \"p_idempotency_key\": \"{{1.idempotency_key}}\",\n  \"p_vapi_call_id\": \"{{1.vapi_call_id}}\",\n  \"p_estimated_duration_minutes\": {{ifempty(1.estimated_duration_minutes; \"null\")}}\n}",
+     "headers": [
+      {
+       "key": "Content-Type",
+       "value": "application/json"
+      }
+     ],
+     "method": "POST",
+     "url": "/rest/v1/rpc/commit_booking"
+    },
+    "parameters": {
+     "__IMTCONN__": 12014112
+    }
+   },
+   "follows": 3,
+   "id": 4,
+   "label": "Commit booking",
+   "module": "supabase:makeAnApiCall",
+   "version": 1
+  },
+  {
+   "config": {
+    "mapper": {
+     "body": "{\"booking_id\": \"{{4.body.booking_id}}\", \"status\": \"{{4.body.ride_status}}\", \"fare\": {{4.body.estimated_fare}}}",
+     "headers": [
+      {
+       "key": "Content-Type",
+       "value": "application/json"
+      }
+     ],
+     "status": 200
+    }
+   },
+   "follows": 4,
+   "id": 5,
+   "label": "200 - booking created",
+   "module": "gateway:WebhookRespond",
+   "version": 1
+  },
+  {
+   "config": {
+    "mapper": {
+     "body": "{\"error\":\"unauthorized\"}",
+     "headers": [
+      {
+       "key": "Content-Type",
+       "value": "application/json"
+      }
+     ],
+     "status": 401
+    }
+   },
+   "filter": {
+    "conditions": [
+     [
+      {
+       "a": "{{first(map(1.__IMTHEADERS__; \"value\"; \"name\"; \"x-vapi-secret\"))}}",
+       "b": "PASTE_VAPI_SHARED_SECRET_HERE",
+       "o": "text:notequal"
+      }
+     ]
+    ],
+    "name": "x-vapi-secret mismatch"
+   },
+   "id": 6,
+   "label": "401 - unauthorized",
+   "module": "gateway:WebhookRespond",
+   "parent": {
+    "index": 1,
+    "kind": "route",
+    "moduleId": 2
+   },
+   "version": 1
+  }
+ ],
+ "name": "W1 Voice Booking Commit v3",
+ "scheduling": {
+  "type": "immediately"
+ },
+ "teamId": 3285635
+}
