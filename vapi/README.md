@@ -3,9 +3,10 @@
 Status: DRAFT, prepared 2026-10-27 from the V0.3
 reference payload. The live dashboard inventory WAS harvested
 2026-10-27 (05:26 and 09:27 EDT) and is recorded in
-`live-inventory-2026-10-27.md`; the Airport/Medical prompts were NOT
-harvested (2SV on the client connection — the owner intervenes) and
-are not invented here. Do not treat the reference files as a live export.
+`live-inventory-2026-10-27.md`; the full live harvest of
+2026-10-28 (prompts verbatim, models, voices, phone, Sheets tool)
+is recorded in `live-harvest-2026-10-28.md`. Do not treat the
+reference files as a live export.
 
 ## What each file is
 
@@ -28,10 +29,15 @@ are not invented here. Do not treat the reference files as a live export.
   `https://hook.us2.make.com/ud1125jgbr54ieqs46nuert9jbvagyid`
   (scenario 6793518), header `x-vapi-secret` = the shared secret the
   owner chooses in Make. See the W1 gap in `live-inventory-2026-10-27.md`.
-- `live-inventory-2026-10-27.md` — what the live dashboard actually
-  holds today (verified 2026-10-27). The live tool definitions are
-  EMPTY (no parameters, headers or auth) — the reference files above
-  are what must be REBUILT in the business account, not what live is.
+- `live-inventory-2026-10-27.md` — what the live dashboard
+  actually holds (verified 2026-10-27). The live tool definitions
+  are EMPTY (no parameters, headers or auth) — the reference files
+  above are what must be REBUILT in the business account, not what
+  live is.
+- `live-harvest-2026-10-28.md` — full live harvest (prompts
+  verbatim, models, voices, transcribers, phone, Sheets tool,
+  archive list) plus gaps found vs. the real system, with proposed
+  corrections NOT applied.
 - `squad.md` — squad members, Sheets/Docs state, phone number.
 
 ## Migration sequence (owner decision already taken: after Make verifies)
