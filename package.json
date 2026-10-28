@@ -1,7 +1,8 @@
-﻿{
+{
   "name": "liberty-ride-monorepo",
   "version": "1.0.0",
   "private": true,
+  "packageManager": "bun@1.4.4",
   "description": "Liberty Ride NKY Trans, LLC - Monorepo consolidÃ© avec interfaces Stitch/AI Studio et BFF API",
   "workspaces": [
     "apps/*",
