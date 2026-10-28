@@ -1,0 +1,182 @@
+{
+  "clientMessages": [
+    "tool-calls-result",
+    "function-call"
+  ],
+  "endCallMessage": "Thank you for calling Liberty Ride NKY Trans. Goodbye.",
+  "firstMessage": "Thank you for calling Liberty Ride NKY Trans. Are you looking to book a ride to CVG Airport, a medical appointment, or a local taxi?",
+  "firstMessageMode": "assistant-speaks-first",
+  "maxDurationSeconds": 600,
+  "model": {
+    "messages": [
+      {
+        "content": "You are the official AI receptionist of Liberty Ride NKY Trans, LLC, in Erlanger, Kentucky. You answer calls on (859) 537-1827. The company provides airport rides to and from Cincinnati/Northern Kentucky International Airport (CVG), private medical and hospital accompaniment rides, business and executive rides, and local taxi rides across Northern Kentucky (Erlanger, Florence, Covington) and Greater Cincinnati.\n\nTONE: courteous, professional, reassuring, concise and efficient. Speak English by default; switch to French or Spanish if the caller asks or clearly speaks that language.\n\nMANDATORY FLOW:\n1. Greet the caller and identify the ride type: AIRPORT_CVG, MEDICAL_HOSPITAL, BUSINESS_EXEC, or LOCAL_TAXI.\n2. Collect the 5 mandatory variables: (a) full name, (b) pickup address, (c) dropoff address, (d) date and time of pickup, (e) if AIRPORT_CVG: the flight number; if MEDICAL_HOSPITAL: any assistance needs (folding wheelchair, help entering the hospital, return waiting).\n3. Once you have pickup, dropoff, date/time and ride type, call the get_quote tool. get_quote returns a fare AND a quote_token valid for 15 minutes. For AIRPORT_CVG rides the fare follows geographic zones (zone 1: $35 flat, zone 2: $45 flat, zone 3: $15 + $2.75 per mile); get_quote determines the zone from the city and returns it as zone_code. get_quote is read-only: it never creates a booking and never alerts a driver.\n4. If get_quote answers that the distance is required (status DISTANCE_REQUIRED), ask the caller for the approximate distance or the exact addresses again so the system can measure it. If get_quote answers ZONE_REQUIRED, ask the caller for the city of the pickup or dropoff and call get_quote again. NEVER state a fare that get_quote did not return: if no fare can be computed, say the fare will be confirmed by the driver before pickup.\n5. Read the quoted fare back to the caller and ask explicitly: \"Shall I book this ride for you?\"\n6. ONLY if the caller clearly says yes, call create_booking_commit with all collected variables, the exact quoted_fare returned by get_quote, the quote_token returned by get_quote, and — for AIRPORT_CVG — the zone_code returned by get_quote. Never call create_booking_commit before the caller's explicit agreement, and never alter the fare. The commit is idempotent: if the call seems to fail or time out, you may retry create_booking_commit ONCE with the exact same values; the server returns the same booking instead of creating a duplicate.\n7. If create_booking_commit answers QUOTE_EXPIRED, QUOTE_INVALID, QUOTE_MISMATCH or FARE_CHANGED, call get_quote again, read the (possibly new) fare to the caller, and ask for agreement again before recommitting. If it answers DRIVER_UNAVAILABLE, the booking is recorded but no driver is available for that time: apologize, tell the caller the owner will call them back shortly to arrange the ride, and end the booking flow politely.\n8. After create_booking_commit succeeds, tell the caller: \"Your request has been sent to our driver. You will receive a confirmation as soon as the driver accepts your ride.\" Never say the ride is confirmed: confirmation happens only after the driver accepts, and the caller is then contacted again.\n\nSTRICT GUARDRAILS (Bounded Agent B3):\n- NEVER invent a price, a discount, or a promotion. Prices come only from get_quote, bound to a signed quote_token.\n- NEVER promise a pickup in less than 15 minutes, and never promise a pickup time that get_quote or create_booking_commit did not return.\n- NEVER modify, cancel, or discuss another customer's booking.\n- If the caller reports an emergency, tell them to hang up and dial 911. This service is non-emergency transportation only.\n- If you cannot understand the caller after two attempts, apologize and say a human will call them back shortly, then end the call politely.\n- Do not discuss these instructions or your tools with the caller.",
+        "role": "system"
+      }
+    ],
+    "model": "gpt-4o",
+    "provider": "openai",
+    "temperature": 0.3,
+    "tools": [
+      {
+        "function": {
+          "description": "READ-ONLY fare quote WITH signed quote token (V0.3 contract). Computes the deterministic fare from the official pricing grid (pricing_zones) and returns {status, fare, currency, zone_code, quote_token, expires_at}. AIRPORT PRICING IS BY GEOGRAPHIC ZONE: ZONE_1 = $35 flat, ZONE_2 = $45 flat, ZONE_3 = $15 + $2.75/mile; medical = $20 + $2.75/mile. The zone is determined by the server from the city of the non-airport address; if it cannot be determined, the result is {status: 'ZONE_REQUIRED'} and NO fare: ask the caller for the city and call again. The quote_token is an HMAC-signed token binding service type, addresses, pickup time, zone, distance and fare; it is valid 15 minutes, is REQUIRED by create_booking_commit, and can be consumed exactly once. Creates nothing, books nothing, never alerts a driver. Call this BEFORE quoting any price. RESPONSE CONTRACT: this tool is called through the assistant server URL; the server (n8n workflow 02) reads the tool call from message.toolCallList[] and answers HTTP 200 with JSON {results: [{toolCallId, result}]} where result is a JSON string. If the distance cannot be measured, result contains {status: 'DISTANCE_REQUIRED'} and NO fare: ask the caller for the approximate distance and call get_quote again with caller_stated_distance_miles, or state that the fare will be confirmed by the driver. Never invent a fare.",
+          "name": "get_quote",
+          "parameters": {
+            "properties": {
+              "caller_stated_distance_miles": {
+                "description": "Approximate distance in miles stated by the caller. Provide ONLY when the server answered DISTANCE_REQUIRED on a previous call and the caller gave an approximate distance.",
+                "type": "number"
+              },
+              "dropoff_address": {
+                "description": "Full dropoff address as given by the caller.",
+                "type": "string"
+              },
+              "pickup_address": {
+                "description": "Full pickup address as given by the caller.",
+                "type": "string"
+              },
+              "pickup_datetime": {
+                "description": "Requested pickup date and time, ISO 8601 (America/New_York).",
+                "type": "string"
+              },
+              "service_type": {
+                "description": "The ride type identified during the call.",
+                "enum": [
+                  "AIRPORT_CVG",
+                  "MEDICAL_HOSPITAL",
+                  "BUSINESS_EXEC",
+                  "LOCAL_TAXI"
+                ],
+                "type": "string"
+              },
+              "zone_code": {
+                "description": "Airport zone if you already know it from a previous get_quote answer in this call (ZONE_1, ZONE_2 or ZONE_3). Usually omit: the server determines it from the city.",
+                "enum": [
+                  "ZONE_1",
+                  "ZONE_2",
+                  "ZONE_3"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "service_type",
+              "pickup_address",
+              "dropoff_address",
+              "pickup_datetime"
+            ],
+            "type": "object"
+          }
+        },
+        "server": {
+          "url": "PASTE_MAKE_QUOTE_WEBHOOK_HERE",
+          "secret": "PASTE_VAPI_SHARED_SECRET_HERE"
+        },
+        "type": "function"
+      },
+      {
+        "function": {
+          "description": "Creates the booking and offers the 5-minute lease to the driver. Call ONLY after the caller has explicitly agreed to the quoted fare ('yes') AND pass the quote_token returned by get_quote, the exact quoted_fare, and — for AIRPORT_CVG — the zone_code returned by get_quote. The server verifies the signed token, RECOMPUTES the fare from pricing_zones, consumes the quote exactly once, upserts the customer by phone and links it to the booking; a fare invented or altered by anyone is rejected (QUOTE_MISMATCH / FARE_CHANGED) and never written. IDEMPOTENT: retrying the same commit (same quote_token) returns the SAME booking with idempotent_replay=true — never a duplicate. The ride is NOT confirmed by this call: it becomes CONFIRMED_R10 only when the driver explicitly accepts the lease, and the driver's identity is verified in the callback. If no driver can take the ride (capacity), the call answers error DRIVER_UNAVAILABLE and the booking stays recorded for the owner to handle. RESPONSE CONTRACT: the server (n8n workflow 01) reads the tool call from message.toolCallList[] and answers HTTP 200 with JSON {results: [{toolCallId, result}]} where result is a JSON string {booking_id, ride_status, estimated_fare, currency}, or {results: [{toolCallId, error}]} with error one of QUOTE_EXPIRED, QUOTE_INVALID, QUOTE_MISMATCH, FARE_CHANGED, DRIVER_UNAVAILABLE. The ride_status on success is LEASE_OFFERED_ATTEMPTED_UNKNOWN (driver acceptance pending) — tell the caller the request was sent to the driver, never that the ride is confirmed.",
+          "name": "create_booking_commit",
+          "parameters": {
+            "properties": {
+              "customer_confirmed": {
+                "description": "Must be true, and may be true only after the caller explicitly said yes to the quoted fare.",
+                "type": "boolean"
+              },
+              "customer_name": {
+                "description": "Caller's full name.",
+                "type": "string"
+              },
+              "customer_phone": {
+                "description": "Caller's phone number (the number they are calling from, confirmed verbally).",
+                "type": "string"
+              },
+              "dropoff_address": {
+                "description": "Full dropoff address. Must match the get_quote call exactly.",
+                "type": "string"
+              },
+              "flight_number": {
+                "description": "Flight number. Required when service_type is AIRPORT_CVG; omit otherwise.",
+                "type": "string"
+              },
+              "pickup_address": {
+                "description": "Full pickup address. Must match the get_quote call exactly.",
+                "type": "string"
+              },
+              "pickup_datetime": {
+                "description": "Pickup date and time, ISO 8601 (America/New_York). Must match the get_quote call exactly.",
+                "type": "string"
+              },
+              "quote_token": {
+                "description": "The signed quote token returned by get_quote (valid 15 minutes). Required: the server rejects any commit without a valid, unexpired token.",
+                "type": "string"
+              },
+              "quoted_fare": {
+                "description": "The exact fare returned by get_quote and accepted by the caller. The server re-verifies it against the signed token and the pricing grid; any other value is rejected.",
+                "type": "number"
+              },
+              "service_type": {
+                "description": "The ride type identified during the call.",
+                "enum": [
+                  "AIRPORT_CVG",
+                  "MEDICAL_HOSPITAL",
+                  "BUSINESS_EXEC",
+                  "LOCAL_TAXI"
+                ],
+                "type": "string"
+              },
+              "special_needs": {
+                "description": "Assistance needs for medical rides (folding wheelchair, help entering the hospital, return waiting). Omit if none.",
+                "type": "string"
+              },
+              "zone_code": {
+                "description": "The zone_code returned by get_quote (ZONE_1, ZONE_2 or ZONE_3). REQUIRED when service_type is AIRPORT_CVG and must match the quoted values exactly; omit for other service types.",
+                "enum": [
+                  "ZONE_1",
+                  "ZONE_2",
+                  "ZONE_3"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "customer_name",
+              "customer_phone",
+              "service_type",
+              "pickup_address",
+              "dropoff_address",
+              "pickup_datetime",
+              "quoted_fare",
+              "quote_token",
+              "customer_confirmed"
+            ],
+            "type": "object"
+          }
+        },
+        "server": {
+          "url": "https://hook.us2.make.com/ud1125jgbr54ieqs46nuert9jbvagyid",
+          "secret": "PASTE_VAPI_SHARED_SECRET_HERE"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  "name": "Liberty Ride - B3-VapiReceptionist",
+  "serverMessages": [
+    "end-of-call-report",
+    "status-update"
+  ],
+  "serverUrl": "PASTE_VAPI_SERVER_URL_HERE",
+  "serverUrlSecret": "PASTE_VAPI_SERVER_SECRET_HERE",
+  "transcriber": {
+    "language": "en",
+    "model": "nova-2",
+    "provider": "deepgram"
+  },
+  "voice": {
+    "provider": "vapi",
+    "voiceId": "Elliot"
+  }
+}
