@@ -51,8 +51,10 @@ reputation that brings customers back. Plumbing is only a means.
   Redeploy after any `apps/` change; check each URL returns 200.
 - Make W1 v3 (6817797): VERIFIED 2026-10-28 via the Supabase
   connection (ID 12014112) — fake booking id + BFF read. v2
-  superseded (inactive). Vapi re-pointing + W02 quote scenario
-  still open. Credentials live in W0 (`make/W0-CREDENTIALS.md`).
+  superseded (inactive). W02 quote scenario (6825545) VERIFIED
+  2026-10-29 (5 behaviors, zone-null fix) — inactive, Free-plan
+  quota. Vapi re-pointing still open. Credentials live in W0
+  (`make/W0-CREDENTIALS.md`).
 - Vapi: tools still point at n8n webhooks (Tailscale funnel) and
   fail the secret check; tool definitions have no parameters yet.
   Re-point + add parameters only after Make verifies. n8n stays

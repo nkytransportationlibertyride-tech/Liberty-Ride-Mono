@@ -1,0 +1,92 @@
+{
+ "name": "M06b SEO Weekly v1",
+ "teamId": 3285635,
+ "scheduling": {
+  "type": "weekly",
+  "time": "09:00",
+  "days": [
+   3
+  ]
+ },
+ "modules": [
+  {
+   "config": {
+    "mapper": {
+     "allowRedirects": true,
+     "headers": [],
+     "method": "get",
+     "parseResponse": false,
+     "shareCookies": false,
+     "stopOnHttpError": false,
+     "url": "https://erlangertaxiservice.com",
+     "requestCompressedContent": true
+    },
+    "parameters": {
+     "authenticationType": "noAuth"
+    }
+   },
+   "filter": {
+    "conditions": [
+     [
+      {
+       "a": "{{formatDate(now; \"dddd HH\"; \"America/New_York\")}}",
+       "b": "Wednesday 09",
+       "o": "text:equal"
+      }
+     ]
+    ],
+    "name": "Wednesday 09:00 only"
+   },
+   "id": 1,
+   "label": "GET homepage (SEO)",
+   "module": "http:MakeRequest",
+   "version": 4,
+   "root": "main"
+  },
+  {
+   "config": {
+    "mapper": {
+     "data": ""
+    }
+   },
+   "id": 2,
+   "label": "Resume as empty HTML",
+   "module": "builtin:Resume",
+   "parent": {
+    "kind": "errorHandler",
+    "moduleId": 1
+   },
+   "version": 1
+  },
+  {
+   "config": {
+    "mapper": {
+     "allowRedirects": true,
+     "contentType": "json",
+     "headers": [
+      {
+       "name": "Content-Type",
+       "value": "application/json"
+      }
+     ],
+     "inputMethod": "jsonString",
+     "jsonStringBodyContent": "{\"text\": \"{{if(contains(1.data; \"application/ld+json\") & contains(1.data; \"TaxiService\") & contains(1.data; \"LocalBusiness\") & contains(replace(replace(replace(1.data; \" \"; \"\"); \"-\"; \"\"); \".\"; \"\"); \"8595371827\"); \"✅ SEO local — Schema.org et téléphone présents.\"; \"⚠️ SEO local — éléments manquants : \" + trim(if(contains(1.data; \"application/ld+json\"); \"\"; \"json_ld_present \") + if(contains(1.data; \"TaxiService\"); \"\"; \"taxiservice_schema \") + if(contains(1.data; \"LocalBusiness\"); \"\"; \"localbusiness_schema \") + if(contains(replace(replace(replace(1.data; \" \"; \"\"); \"-\"; \"\"); \".\"; \"\"); \"8595371827\"); \"\"; \"phone_visible \")))}}\"}",
+     "method": "post",
+     "parseResponse": true,
+     "requestCompressedContent": true,
+     "shareCookies": false,
+     "stopOnHttpError": true,
+     "url": "https://example.invalid/alerts"
+    },
+    "parameters": {
+     "authenticationType": "noAuth"
+    }
+   },
+   "follows": 1,
+   "id": 3,
+   "label": "DELIVERY DECISION REQUIRED - SEO report",
+   "module": "http:MakeRequest",
+   "version": 4
+  }
+ ]
+}

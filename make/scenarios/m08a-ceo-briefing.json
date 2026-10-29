@@ -1,0 +1,198 @@
+{
+ "name": "M08a CEO Briefing Daily v1",
+ "teamId": 3285635,
+ "scheduling": {
+  "type": "daily",
+  "time": "06:00"
+ },
+ "modules": [
+  {
+   "config": {
+    "parameters": {
+     "__IMTCONN__": 12014112
+    },
+    "mapper": {
+     "qs": [
+      {
+       "key": "select",
+       "value": "id,ride_status,service_type,pickup_datetime,estimated_fare"
+      },
+      {
+       "key": "pickup_datetime",
+       "value": "gte.{{formatDate(setHour(setMinute(setSecond(now; 0); 0); 0); \"YYYY-MM-DDTHH:mm:ssZ\"; \"America/New_York\")}}"
+      },
+      {
+       "key": "pickup_datetime",
+       "value": "lt.{{formatDate(addDays(setHour(setMinute(setSecond(now; 0); 0); 0); 1); \"YYYY-MM-DDTHH:mm:ssZ\"; \"America/New_York\")}}"
+      },
+      {
+       "key": "ride_status",
+       "value": "neq.CANCELLED"
+      },
+      {
+       "key": "order",
+       "value": "pickup_datetime.asc"
+      }
+     ],
+     "url": "/rest/v1/bookings",
+     "method": "GET"
+    }
+   },
+   "id": 1,
+   "label": "Today's rides (REST)",
+   "module": "supabase:makeAnApiCall",
+   "version": 1,
+   "root": "main"
+  },
+  {
+   "config": {
+    "parameters": {
+     "__IMTCONN__": 12014112
+    },
+    "mapper": {
+     "qs": [
+      {
+       "key": "select",
+       "value": "id,estimated_fare"
+      },
+      {
+       "key": "ride_status",
+       "value": "eq.COMPLETED"
+      },
+      {
+       "key": "updated_at",
+       "value": "gte.{{formatDate(addDays(setHour(setMinute(setSecond(now; 0); 0); 0); -1); \"YYYY-MM-DDTHH:mm:ssZ\"; \"America/New_York\")}}"
+      },
+      {
+       "key": "updated_at",
+       "value": "lt.{{formatDate(setHour(setMinute(setSecond(now; 0); 0); 0); \"YYYY-MM-DDTHH:mm:ssZ\"; \"America/New_York\")}}"
+      }
+     ],
+     "url": "/rest/v1/bookings",
+     "method": "GET"
+    }
+   },
+   "follows": 1,
+   "id": 2,
+   "label": "Yesterday completed rides - revenue (REST)",
+   "module": "supabase:makeAnApiCall",
+   "version": 1
+  },
+  {
+   "config": {},
+   "follows": 2,
+   "id": 3,
+   "label": "Has rides today?",
+   "module": "builtin:BasicIfElse",
+   "version": 1
+  },
+  {
+   "config": {
+    "mapper": {
+     "array": "{{slice(1.body; 0; 12)}}"
+    }
+   },
+   "id": 4,
+   "label": "First 12 rides",
+   "module": "builtin:BasicFeeder",
+   "parent": {
+    "conditions": [
+     [
+      {
+       "a": "{{length(2.body)}}",
+       "b": "0",
+       "o": "number:greater"
+      }
+     ]
+    ],
+    "index": 0,
+    "kind": "branch",
+    "label": "Has rides today",
+    "moduleId": 3
+   },
+   "version": 1
+  },
+  {
+   "config": {
+    "parameters": {
+     "feeder": 4,
+     "rowSeparator": "other",
+     "otherRowSeparator": "\\n"
+    },
+    "mapper": {
+     "value": "• {{formatDate(4.pickup_datetime; \"HH:mm\"; \"America/New_York\")}} — #{{substring(4.id; 0; 8)}} ({{4.ride_status}})"
+    }
+   },
+   "follows": 4,
+   "id": 5,
+   "label": "Ride lines",
+   "module": "util:TextAggregator",
+   "version": 1
+  },
+  {
+   "config": {
+    "parameters": {
+     "authenticationType": "noAuth"
+    },
+    "mapper": {
+     "url": "https://example.invalid/alerts",
+     "method": "post",
+     "headers": [
+      {
+       "name": "Content-Type",
+       "value": "application/json"
+      }
+     ],
+     "contentType": "json",
+     "inputMethod": "jsonString",
+     "shareCookies": false,
+     "parseResponse": true,
+     "allowRedirects": true,
+     "stopOnHttpError": true,
+     "jsonStringBodyContent": "{\"text\": \"🌅 Briefing CEO Liberty Ride\\nCourses aujourd'hui : <b>{{length(1.body)}}</b> {\\\"REQUESTED\\\": {{length(map(1.body; \"id\"; \"ride_status\"; \"REQUESTED\"))}}, \\\"INTAKE_VALIDATED\\\": {{length(map(1.body; \"id\"; \"ride_status\"; \"INTAKE_VALIDATED\"))}}, \\\"LEASE_OFFERED_ATTEMPTED_UNKNOWN\\\": {{length(map(1.body; \"id\"; \"ride_status\"; \"LEASE_OFFERED_ATTEMPTED_UNKNOWN\"))}}, \\\"CONFIRMED_R10\\\": {{length(map(1.body; \"id\"; \"ride_status\"; \"CONFIRMED_R10\"))}}, \\\"LEASE_EXPIRED_ESCALATED\\\": {{length(map(1.body; \"id\"; \"ride_status\"; \"LEASE_EXPIRED_ESCALATED\"))}}, \\\"DRIVER_REJECTED\\\": {{length(map(1.body; \"id\"; \"ride_status\"; \"DRIVER_REJECTED\"))}}, \\\"NO_DRIVER_AVAILABLE\\\": {{length(map(1.body; \"id\"; \"ride_status\"; \"NO_DRIVER_AVAILABLE\"))}}, \\\"DRIVER_EN_ROUTE\\\": {{length(map(1.body; \"id\"; \"ride_status\"; \"DRIVER_EN_ROUTE\"))}}, \\\"COMPLETED\\\": {{length(map(1.body; \"id\"; \"ride_status\"; \"COMPLETED\"))}}, \\\"CANCELLED\\\": {{length(map(1.body; \"id\"; \"ride_status\"; \"CANCELLED\"))}}}\\nCA courses terminées hier : <b>{{formatNumber(sum(map(2.body; \"estimated_fare\")); 2; \".\"; \",\")}} $</b>\\n{{5.text}}\"}",
+     "requestCompressedContent": true
+    }
+   },
+   "follows": 5,
+   "id": 6,
+   "label": "DELIVERY DECISION REQUIRED - CEO briefing",
+   "module": "http:MakeRequest",
+   "version": 4
+  },
+  {
+   "config": {
+    "parameters": {
+     "authenticationType": "noAuth"
+    },
+    "mapper": {
+     "url": "https://example.invalid/alerts",
+     "method": "post",
+     "headers": [
+      {
+       "name": "Content-Type",
+       "value": "application/json"
+      }
+     ],
+     "contentType": "json",
+     "inputMethod": "jsonString",
+     "shareCookies": false,
+     "parseResponse": true,
+     "allowRedirects": true,
+     "stopOnHttpError": true,
+     "jsonStringBodyContent": "{\"text\": \"🌅 Briefing CEO Liberty Ride\\nCourses aujourd'hui : <b>{{length(1.body)}}</b> {\\\"REQUESTED\\\": {{length(map(1.body; \"id\"; \"ride_status\"; \"REQUESTED\"))}}, \\\"INTAKE_VALIDATED\\\": {{length(map(1.body; \"id\"; \"ride_status\"; \"INTAKE_VALIDATED\"))}}, \\\"LEASE_OFFERED_ATTEMPTED_UNKNOWN\\\": {{length(map(1.body; \"id\"; \"ride_status\"; \"LEASE_OFFERED_ATTEMPTED_UNKNOWN\"))}}, \\\"CONFIRMED_R10\\\": {{length(map(1.body; \"id\"; \"ride_status\"; \"CONFIRMED_R10\"))}}, \\\"LEASE_EXPIRED_ESCALATED\\\": {{length(map(1.body; \"id\"; \"ride_status\"; \"LEASE_EXPIRED_ESCALATED\"))}}, \\\"DRIVER_REJECTED\\\": {{length(map(1.body; \"id\"; \"ride_status\"; \"DRIVER_REJECTED\"))}}, \\\"NO_DRIVER_AVAILABLE\\\": {{length(map(1.body; \"id\"; \"ride_status\"; \"NO_DRIVER_AVAILABLE\"))}}, \\\"DRIVER_EN_ROUTE\\\": {{length(map(1.body; \"id\"; \"ride_status\"; \"DRIVER_EN_ROUTE\"))}}, \\\"COMPLETED\\\": {{length(map(1.body; \"id\"; \"ride_status\"; \"COMPLETED\"))}}, \\\"CANCELLED\\\": {{length(map(1.body; \"id\"; \"ride_status\"; \"CANCELLED\"))}}}\\nCA courses terminées hier : <b>{{formatNumber(sum(map(2.body; \"estimated_fare\")); 2; \".\"; \",\")}} $</b>\\nAucune course planifiée.\"}",
+     "requestCompressedContent": true
+    }
+   },
+   "id": 7,
+   "label": "DELIVERY DECISION REQUIRED - CEO briefing (no rides)",
+   "module": "http:MakeRequest",
+   "parent": {
+    "index": 1,
+    "kind": "branch",
+    "label": "No rides today",
+    "moduleId": 3
+   },
+   "version": 4
+  }
+ ]
+}

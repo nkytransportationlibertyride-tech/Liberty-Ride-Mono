@@ -20,6 +20,16 @@ the verified cutover — see "Cutover" below.
 | 6792449 | W1 Voice Booking Commit | ACTIVE (legacy, dashboard-built) | `https://hook.us2.make.com/ju0gmo6ihjcgznm32ty6h8bumxiqnvrn` |
 | 6793518 | W1 Voice Booking Commit v2 | INACTIVE (superseded by v3) | `https://hook.us2.make.com/ud1125jgbr54ieqs46nuert9jbvagyid` |
 | 6817797 | W1 Voice Booking Commit v3 | ACTIVE (verified — Supabase connection, no literal keys) | `https://hook.us2.make.com/jui46xdyx8r3pu3dlovk46hr4idvb9my` |
+| 6825545 | W02 Voice Quote v1 | INACTIVE (verified 2026-10-29 — Free-plan quota; activate at cutover) | `https://hook.us2.make.com/4pevp8k4sy415yx6ds5y4uttsvi7h2mu` |
+| 6825665 | M05 Fleet Compliance Weekly v1 | INACTIVE (verified empty-case 2026-10-29 — formula check with seeded rows still open) | — (weekly Mon 07:00) |
+| 6825725 | M07 B2B Account Request v1 | INACTIVE (verified 2026-10-29 — 200 PENDING_VALIDATION, 401 arm, enum rejection) | `https://hook.us2.make.com/85jnn82hzsugw7jcsg16kxtd0llgaloi` |
+| 6825726 | M04 Stripe Events v1 | INACTIVE (DECISION PENDING — verification mechanism undecided; editor pass done, no run test without a real Stripe key) | `https://hook.us2.make.com/ecwayojw266dtoljvlxoiyo7av27fpop` |
+| 6825743 | M04b Payment Link v1 | INACTIVE (DECISION PENDING — editor pass done, HTTP params patched; filter warning unresolved) | `https://hook.us2.make.com/dyvbwmdi7btbh9t6j8tdrglgp2wryvju` |
+| 6825773 | M06a Site Uptime Hourly v1 | INACTIVE (logic verified — host blocks Make IPs: "IP blocked"; unusable from Make against this host) | — (hourly) |
+| 6825775 | M06b SEO Weekly v1 | INACTIVE (verified to delivery 2026-10-29 — 4 SEO checks missing on old site) | — (weekly Wed 09:00) |
+| 6825776 | M08a CEO Briefing Daily v1 | INACTIVE (verified to delivery 2026-10-29 — counts + $95.00 revenue exact) | — (daily 06:00) |
+| 6825778 | M08b Stuck Lease Audit Hourly v1 | INACTIVE (verified empty-case 2026-10-29 — 0 stuck leases) | — (hourly) |
+| 6826312 | M03 Reviews Daily v1 | INACTIVE (verified to channel 2026-10-29 — GET + embed + filter proven; send channel undecided) | — (daily 10:00) |
 
 - 6817797 (v3): built via the Make scenario-management MCP server
   from `scenarios/w1-v3-connection.json`, then an editor pass

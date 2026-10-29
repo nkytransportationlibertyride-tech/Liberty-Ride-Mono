@@ -1,0 +1,133 @@
+{
+ "name": "M08b Stuck Lease Audit Hourly v1",
+ "teamId": 3285635,
+ "scheduling": {
+  "type": "indefinitely",
+  "interval": 3600
+ },
+ "modules": [
+  {
+   "config": {
+    "mapper": {
+     "method": "GET",
+     "qs": [
+      {
+       "key": "select",
+       "value": "id,lease_expires_at"
+      },
+      {
+       "key": "ride_status",
+       "value": "eq.LEASE_OFFERED_ATTEMPTED_UNKNOWN"
+      },
+      {
+       "key": "lease_expires_at",
+       "value": "lt.{{formatDate(now; \"YYYY-MM-DDTHH:mm:ssZ\"; \"America/New_York\")}}"
+      }
+     ],
+     "url": "/rest/v1/bookings"
+    },
+    "parameters": {
+     "__IMTCONN__": 12014112
+    }
+   },
+   "id": 1,
+   "label": "Stuck leases past expiry (REST)",
+   "module": "supabase:makeAnApiCall",
+   "version": 1,
+   "root": "main"
+  },
+  {
+   "config": {
+    "mapper": {
+     "array": "{{1.body}}"
+    }
+   },
+   "follows": 1,
+   "id": 2,
+   "label": "Each stuck lease",
+   "module": "builtin:BasicFeeder",
+   "version": 1
+  },
+  {
+   "config": {
+    "mapper": {
+     "body": "{\n  \"p_booking_id\": \"{{2.id}}\",\n  \"p_actor\": \"n8n-08-safetyauditor\"\n}",
+     "headers": [
+      {
+       "key": "Content-Type",
+       "value": "application/json"
+      }
+     ],
+     "method": "POST",
+     "url": "/rest/v1/rpc/expire_driver_lease"
+    },
+    "parameters": {
+     "__IMTCONN__": 12014112
+    }
+   },
+   "follows": 2,
+   "id": 3,
+   "label": "Expire stuck lease (RPC expire_driver_lease)",
+   "module": "supabase:makeAnApiCall",
+   "version": 1
+  },
+  {
+   "config": {
+    "mapper": {
+     "value": "{{if(3.body = true; 1; 0)}}"
+    },
+    "parameters": {
+     "feeder": 2,
+     "fn": "sum"
+    }
+   },
+   "follows": 3,
+   "id": 4,
+   "label": "Count applied expirations",
+   "module": "util:FunctionAggregator2",
+   "version": 1
+  },
+  {
+   "config": {
+    "mapper": {
+     "allowRedirects": true,
+     "contentType": "json",
+     "headers": [
+      {
+       "name": "Content-Type",
+       "value": "application/json"
+      }
+     ],
+     "inputMethod": "jsonString",
+     "jsonStringBodyContent": "{\"text\": \"🛡️ SafetyAuditor : <b>{{4.result}}</b> bail/baux bloqué(s) expiré(s) par le filet horaire. Vérifier les escalades du workflow 01.\"}",
+     "method": "post",
+     "parseResponse": true,
+     "requestCompressedContent": true,
+     "shareCookies": false,
+     "stopOnHttpError": true,
+     "url": "https://example.invalid/alerts"
+    },
+    "parameters": {
+     "authenticationType": "noAuth"
+    }
+   },
+   "filter": {
+    "conditions": [
+     [
+      {
+       "a": "{{4.result}}",
+       "b": "0",
+       "o": "number:greater"
+      }
+     ]
+    ],
+    "name": "Leases were expired"
+   },
+   "follows": 4,
+   "id": 5,
+   "label": "DELIVERY DECISION REQUIRED - SafetyAuditor alert",
+   "module": "http:MakeRequest",
+   "version": 4
+  }
+ ]
+}

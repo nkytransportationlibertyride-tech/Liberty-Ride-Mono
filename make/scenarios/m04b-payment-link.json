@@ -1,0 +1,234 @@
+{
+ "modules": [
+  {
+   "config": {},
+   "id": 1,
+   "label": "M04b Payment Link v1 - DECISION PENDING DO NOT ACTIVATE",
+   "module": "gateway:CustomWebHook",
+   "root": "main",
+   "version": 1
+  },
+  {
+   "config": {},
+   "follows": 1,
+   "id": 2,
+   "label": "Internal secret gate",
+   "module": "builtin:BasicRouter",
+   "version": 1
+  },
+  {
+   "config": {
+    "mapper": {
+     "method": "GET",
+     "qs": [
+      {
+       "key": "select",
+       "value": "id,ride_status,estimated_fare,customer_phone"
+      },
+      {
+       "key": "id",
+       "value": "eq.{{1.booking_id}}"
+      }
+     ],
+     "url": "/rest/v1/bookings"
+    },
+    "parameters": {
+     "__IMTCONN__": 12014112
+    }
+   },
+   "filter": {
+    "conditions": [
+     [
+      {
+       "a": "{{first(map(1.__IMTHEADERS__; \"value\"; \"name\"; \"x-internal-secret\"))}}",
+       "b": "PASTE_INTERNAL_SHARED_SECRET_HERE",
+       "o": "text:equal"
+      },
+      {
+       "a": "{{ifempty(1.booking_id; \"EMPTY\")}}",
+       "b": "EMPTY",
+       "o": "text:notequal"
+      }
+     ]
+    ],
+    "name": "x-internal-secret check and booking present"
+   },
+   "id": 3,
+   "label": "Read booking (REST list)",
+   "module": "supabase:makeAnApiCall",
+   "parent": {
+    "index": 0,
+    "kind": "route",
+    "moduleId": 2
+   },
+   "version": 1
+  },
+  {
+   "config": {},
+   "follows": 3,
+   "id": 4,
+   "label": "CONFIRMED_R10 gate",
+   "module": "builtin:BasicRouter",
+   "version": 1
+  },
+  {
+   "config": {
+    "mapper": {
+     "contentType": "urlEncoded",
+     "headers": [
+      {
+       "name": "Authorization",
+       "value": "Bearer PASTE_STRIPE_SECRET_KEY_HERE"
+      }
+     ],
+     "method": "post",
+     "parseResponse": true,
+     "url": "https://api.stripe.com/v1/payment_links",
+     "urlEncodedBodyContent": [
+      {
+       "name": "line_items[0][price_data][currency]",
+       "value": "usd"
+      },
+      {
+       "name": "line_items[0][price_data][unit_amount]",
+       "value": "{{round(first(3.body).estimated_fare * 100)}}"
+      },
+      {
+       "name": "line_items[0][price_data][product_data][name]",
+       "value": "Liberty Ride NKY Trans — course {{first(3.body).id}}"
+      },
+      {
+       "name": "line_items[0][quantity]",
+       "value": "1"
+      },
+      {
+       "name": "metadata[booking_id]",
+       "value": "{{first(3.body).id}}"
+      },
+      {
+       "name": "payment_intent_data[metadata][booking_id]",
+       "value": "{{first(3.body).id}}"
+      }
+     ],
+     "requestCompressedContent": true,
+     "allowRedirects": true,
+     "shareCookies": false,
+     "stopOnHttpError": true
+    },
+    "parameters": {
+     "authenticationType": "noAuth"
+    }
+   },
+   "filter": {
+    "conditions": [
+     [
+      {
+       "a": "{{first(3.body).ride_status}}",
+       "b": "CONFIRMED_R10",
+       "o": "text:equal"
+      }
+     ]
+    ],
+    "name": "booking CONFIRMED_R10"
+   },
+   "id": 5,
+   "label": "Create Stripe payment link - VERIFY http output field names 5.data.* at first real test",
+   "module": "http:MakeRequest",
+   "parent": {
+    "index": 0,
+    "kind": "route",
+    "moduleId": 4
+   },
+   "version": 4
+  },
+  {
+   "config": {
+    "mapper": {
+     "body": "{\"booking_id\": \"{{5.data.metadata.booking_id}}\", \"url\": \"{{5.data.url}}\"}",
+     "headers": [
+      {
+       "key": "Content-Type",
+       "value": "application/json"
+      }
+     ],
+     "status": 200
+    }
+   },
+   "follows": 5,
+   "id": 6,
+   "label": "200 - payment link",
+   "module": "gateway:WebhookRespond",
+   "version": 1
+  },
+  {
+   "config": {
+    "mapper": {
+     "body": "{\"error\": \"booking not confirmed\"}",
+     "headers": [
+      {
+       "key": "Content-Type",
+       "value": "application/json"
+      }
+     ],
+     "status": 403
+    }
+   },
+   "id": 7,
+   "label": "403 - booking not confirmed",
+   "module": "gateway:WebhookRespond",
+   "parent": {
+    "index": 1,
+    "kind": "route",
+    "moduleId": 4
+   },
+   "version": 1
+  },
+  {
+   "config": {
+    "mapper": {
+     "body": "{\"error\": \"unauthorized\"}",
+     "headers": [
+      {
+       "key": "Content-Type",
+       "value": "application/json"
+      }
+     ],
+     "status": 401
+    }
+   },
+   "filter": {
+    "conditions": [
+     [
+      {
+       "a": "{{first(map(1.__IMTHEADERS__; \"value\"; \"name\"; \"x-internal-secret\"))}}",
+       "b": "PASTE_INTERNAL_SHARED_SECRET_HERE",
+       "o": "text:notequal"
+      }
+     ],
+     [
+      {
+       "a": "{{ifempty(1.booking_id; \"EMPTY\")}}",
+       "b": "EMPTY",
+       "o": "text:equal"
+      }
+     ]
+    ],
+    "name": "secret mismatch or booking missing"
+   },
+   "id": 8,
+   "label": "401 - unauthorized",
+   "module": "gateway:WebhookRespond",
+   "parent": {
+    "index": 1,
+    "kind": "route",
+    "moduleId": 2
+   },
+   "version": 1
+  }
+ ],
+ "name": "M04b Payment Link v1 - DECISION PENDING",
+ "scheduling": {
+  "type": "immediately"
+ },
+ "teamId": 3285635
+}

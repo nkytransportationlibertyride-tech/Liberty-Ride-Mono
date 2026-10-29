@@ -1,0 +1,95 @@
+{
+ "name": "M06a Site Uptime Hourly v1",
+ "teamId": 3285635,
+ "scheduling": {
+  "type": "indefinitely",
+  "interval": 3600
+ },
+ "modules": [
+  {
+   "config": {
+    "mapper": {
+     "allowRedirects": true,
+     "headers": [],
+     "method": "get",
+     "parseResponse": false,
+     "shareCookies": false,
+     "stopOnHttpError": false,
+     "url": "https://erlangertaxiservice.com",
+     "requestCompressedContent": true
+    },
+    "parameters": {
+     "authenticationType": "noAuth"
+    }
+   },
+   "id": 1,
+   "label": "GET site (uptime)",
+   "module": "http:MakeRequest",
+   "version": 4,
+   "root": "main"
+  },
+  {
+   "config": {
+    "mapper": {
+     "data": ""
+    }
+   },
+   "id": 2,
+   "label": "Resume as down (no response)",
+   "module": "builtin:Resume",
+   "parent": {
+    "kind": "errorHandler",
+    "moduleId": 1
+   },
+   "version": 1
+  },
+  {
+   "config": {
+    "mapper": {
+     "allowRedirects": true,
+     "contentType": "json",
+     "headers": [
+      {
+       "name": "Content-Type",
+       "value": "application/json"
+      }
+     ],
+     "inputMethod": "jsonString",
+     "jsonStringBodyContent": "{\"text\": \"🔴 erlangertaxiservice.com INDISPONIBLE (code : {{ifempty(2.statusCode; \"aucune réponse\")}}).\"}",
+     "method": "post",
+     "parseResponse": true,
+     "requestCompressedContent": true,
+     "shareCookies": false,
+     "stopOnHttpError": true,
+     "url": "https://PASTE_ALERT_ENDPOINT_HERE"
+    },
+    "parameters": {
+     "authenticationType": "noAuth"
+    }
+   },
+   "filter": {
+    "conditions": [
+     [
+      {
+       "a": "{{1.statusCode}}",
+       "o": "notexist"
+      }
+     ],
+     [
+      {
+       "a": "{{1.statusCode}}",
+       "b": "400",
+       "o": "number:greaterorequal"
+      }
+     ]
+    ],
+    "name": "Site down"
+   },
+   "follows": 1,
+   "id": 3,
+   "label": "DELIVERY DECISION REQUIRED - site down alert",
+   "module": "http:MakeRequest",
+   "version": 4
+  }
+ ]
+}

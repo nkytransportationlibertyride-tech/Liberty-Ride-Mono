@@ -1,0 +1,128 @@
+{
+ "name": "M03 Reviews Daily v1",
+ "teamId": 3285635,
+ "scheduling": {
+  "type": "daily",
+  "time": "10:00"
+ },
+ "modules": [
+  {
+   "id": 1,
+   "module": "supabase:makeAnApiCall",
+   "version": 1,
+   "root": "main",
+   "label": "Yesterday COMPLETED bookings",
+   "config": {
+    "parameters": {
+     "__IMTCONN__": 12014112
+    },
+    "mapper": {
+     "method": "GET",
+     "url": "/rest/v1/bookings",
+     "qs": [
+      {
+       "key": "select",
+       "value": "id,ride_status,updated_at,customer_id,customers(name,phone,review_requested)"
+      },
+      {
+       "key": "ride_status",
+       "value": "eq.COMPLETED"
+      },
+      {
+       "key": "updated_at",
+       "value": "gte.{{formatDate(addDays(now; -1); \"YYYY-MM-DDT00:00:00Z\"; \"UTC\")}}"
+      },
+      {
+       "key": "updated_at",
+       "value": "lt.{{formatDate(now; \"YYYY-MM-DDT00:00:00Z\"; \"UTC\")}}"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "id": 2,
+   "module": "builtin:BasicFeeder",
+   "version": 1,
+   "follows": 1,
+   "label": "One bundle per booking",
+   "config": {
+    "mapper": {
+     "array": "{{1.body}}"
+    }
+   }
+  },
+  {
+   "id": 3,
+   "module": "http:MakeRequest",
+   "version": 4,
+   "follows": 2,
+   "label": "Review request send (channel TBD)",
+   "filters": {
+    "name": "phone present, not yet asked",
+    "conditions": [
+     [
+      {
+       "a": "{{ifempty(2.customers.phone; \"EMPTY\")}}",
+       "o": "text:notequal",
+       "b": "EMPTY"
+      },
+      {
+       "a": "{{2.customers.review_requested}}",
+       "o": "text:notequal",
+       "b": "true"
+      }
+     ]
+    ]
+   },
+   "config": {
+    "parameters": {
+     "authenticationType": "noAuth"
+    },
+    "mapper": {
+     "url": "https://example.invalid/review-request",
+     "method": "post",
+     "headers": [
+      {
+       "name": "Content-Type",
+       "value": "application/json"
+      }
+     ],
+     "contentType": "json",
+     "inputMethod": "jsonString",
+     "jsonStringBodyContent": "{\"to\": \"{{2.customers.phone}}\", \"message\": \"Hi {{ifempty(2.customers.name; \"there\")}}, this is Liberty Ride NKY Trans. Thank you for riding with us. If you have a moment, we would appreciate your honest review: PASTE_GOOGLE_REVIEW_LINK_HERE\"}",
+     "parseResponse": true,
+     "requestCompressedContent": true,
+     "shareCookies": false,
+     "stopOnHttpError": true,
+     "allowRedirects": true
+    }
+   }
+  },
+  {
+   "id": 4,
+   "module": "supabase:makeAnApiCall",
+   "version": 1,
+   "follows": 3,
+   "label": "Mark review requested",
+   "config": {
+    "parameters": {
+     "__IMTCONN__": 12014112
+    },
+    "mapper": {
+     "method": "POST",
+     "url": "/rest/v1/rpc/mark_review_requested",
+     "headers": [
+      {
+       "key": "Content-Type",
+       "value": "application/json"
+      }
+     ],
+     "body": "{\"p_customer_id\": \"{{2.customer_id}}\", \"p_actor\": \"make-03\"}"
+    }
+   }
+  }
+ ],
+ "scenarioId": 6826312,
+ "status": "inactive"
+}

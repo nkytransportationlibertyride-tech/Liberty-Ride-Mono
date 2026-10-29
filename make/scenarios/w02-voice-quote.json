@@ -1,0 +1,118 @@
+{
+ "modules": [
+  {
+   "config": {},
+   "id": 1,
+   "label": "W02 Voice Quote v1",
+   "module": "gateway:CustomWebHook",
+   "root": "main",
+   "version": 1
+  },
+  {
+   "config": {},
+   "follows": 1,
+   "id": 2,
+   "label": "Secret gate",
+   "module": "builtin:BasicRouter",
+   "version": 1
+  },
+  {
+   "config": {
+    "mapper": {
+     "body": "{\n  \"p_service_type\": \"{{1.service_type}}\",\n  \"p_distance_miles\": {{ifempty(1.caller_stated_distance_miles; \"null\")}}, \n  \"p_pickup_address\": \"{{1.pickup_address}}\",\n  \"p_dropoff_address\": \"{{1.dropoff_address}}\",\n  \"p_pickup_datetime\": \"{{1.pickup_datetime}}\",\n  \"p_zone_code\": {{ifempty(1.zone_code; \"null\")}}\n}",
+     "headers": [
+      {
+       "key": "Content-Type",
+       "value": "application/json"
+      }
+     ],
+     "method": "POST",
+     "url": "/rest/v1/rpc/issue_quote_token"
+    },
+    "parameters": {
+     "__IMTCONN__": 12014112
+    }
+   },
+   "filter": {
+    "conditions": [
+     [
+      {
+       "a": "{{first(map(1.__IMTHEADERS__; \"value\"; \"name\"; \"x-vapi-secret\"))}}",
+       "b": "PASTE_VAPI_SHARED_SECRET_HERE",
+       "o": "text:equal"
+      }
+     ]
+    ],
+    "name": "x-vapi-secret check"
+   },
+   "id": 3,
+   "label": "Issue quote token",
+   "module": "supabase:makeAnApiCall",
+   "parent": {
+    "index": 0,
+    "kind": "route",
+    "moduleId": 2
+   },
+   "version": 1
+  },
+  {
+   "config": {
+    "mapper": {
+     "body": "{\"status\": \"{{3.body.status}}\", \"fare\": {{ifempty(3.body.fare; \"null\")}}, \"currency\": \"{{ifempty(3.body.currency; \"USD\")}}\", \"zone_code\": \"{{3.body.zone_code}}\", \"quote_token\": \"{{3.body.quote_token}}\", \"expires_at\": \"{{3.body.expires_at}}\"}",
+     "headers": [
+      {
+       "key": "Content-Type",
+       "value": "application/json"
+      }
+     ],
+     "status": 200
+    }
+   },
+   "follows": 3,
+   "id": 4,
+   "label": "200 - quote",
+   "module": "gateway:WebhookRespond",
+   "version": 1
+  },
+  {
+   "config": {
+    "mapper": {
+     "body": "{\"error\":\"unauthorized\"}",
+     "headers": [
+      {
+       "key": "Content-Type",
+       "value": "application/json"
+      }
+     ],
+     "status": 401
+    }
+   },
+   "filter": {
+    "conditions": [
+     [
+      {
+       "a": "{{first(map(1.__IMTHEADERS__; \"value\"; \"name\"; \"x-vapi-secret\"))}}",
+       "b": "PASTE_VAPI_SHARED_SECRET_HERE",
+       "o": "text:notequal"
+      }
+     ]
+    ],
+    "name": "x-vapi-secret mismatch"
+   },
+   "id": 5,
+   "label": "401 - unauthorized",
+   "module": "gateway:WebhookRespond",
+   "parent": {
+    "index": 1,
+    "kind": "route",
+    "moduleId": 2
+   },
+   "version": 1
+  }
+ ],
+ "name": "W02 Voice Quote v1",
+ "scheduling": {
+  "type": "immediately"
+ },
+ "teamId": 3285635
+}
