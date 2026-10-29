@@ -1,0 +1,15 @@
+{
+ "create_in": "Vapi account nkytransportationlibertyride@gmail.com (business)",
+ "kind": "squad",
+ "name": "Liberty Ride Squad",
+ "members_in_order": [
+  "Liberty Ride Receptionist (Start Node)",
+  "Airport Specialist",
+  "Medical Specialist"
+ ],
+ "routing": "NONE in the source account: no routing edges, no handoff tools on any member. Recreate as-is; the Receptionist effectively handles all calls until transfer is configured.",
+ "notes": [
+  "Gap recorded, not fixed here: configure handoff/transfer or collapse the squad (harvest gap 4). Do not invent a routing mechanism.",
+  "Squad member panels showed 'use latest version' for assistants: PIN the assistant versions used by the squad."
+ ]
+}

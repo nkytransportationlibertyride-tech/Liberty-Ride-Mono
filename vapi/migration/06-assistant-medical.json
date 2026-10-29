@@ -1,0 +1,52 @@
+{
+ "model": {
+  "provider": "OpenAI",
+  "model": "GPT-4.1",
+  "intelligence": 20,
+  "preset": "Balanced",
+  "temperature": 0.5,
+  "max_tokens": 250,
+  "fast_turns": 0,
+  "priority_processing": "off",
+  "tool_strict_compatibility": "off"
+ },
+ "voice": {
+  "provider": "Vapi",
+  "voice": "Vapi Voices - Version 2, Elliot v2 Latest",
+  "language": "Automatic",
+  "speed": 1.1,
+  "background_sound": "Default",
+  "humanness": 92,
+  "voice_caching": "on",
+  "auto_fallbacks": "on"
+ },
+ "transcriber": {
+  "provider": "Soniox STT RT v5",
+  "language": "English (NOT Automatic)",
+  "end_of_turn_wait_s": 1.5,
+  "silence_timeout_ms": 500,
+  "endpoint_sensitivity": 0.3,
+  "endpoint_latency_level": 2,
+  "strict_language": "on"
+ },
+ "first_message": "Hello.",
+ "first_message_mode": "Assistant speaks first",
+ "tools": [],
+ "advanced_voicemail_message": "Please call back when you're available.",
+ "advanced": {
+  "server_url": "EMPTY",
+  "timeout_s": 20,
+  "max_duration_s": 600,
+  "silence_timeout_s": 30,
+  "recording_logging_transcript": "on",
+  "audio_format": "WAV",
+  "end_call_phrases": "goodbye,take care,have a good day",
+  "end_call_message": "EMPTY",
+  "forwarding_phone_number_deprecated": "US 4257623355 (verbatim: VERIFY)"
+ },
+ "create_in": "Vapi account nkytransportationlibertyride@gmail.com (business)",
+ "kind": "assistant",
+ "name": "Medical Specialist",
+ "system_prompt": "You are the Medical Specialist for Liberty Ride NKY Trans, LLC, a call-routing specialist within the Liberty Ride Squad. Your role is medical intake for private medical appointments and hospital accompaniment. Collect the appointment time and the caller's assistance needs, then the other ride details the caller provides. After collecting the intake information, relay the caller to booking. Do not quote prices, state rules, or make promises beyond relaying the collected information to booking.",
+ "_prompt_source": "Verbatim from live-harvest-2026-10-28.md section 4."
+}

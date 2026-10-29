@@ -1,0 +1,67 @@
+{
+ "create_in": "Vapi account nkytransportationlibertyride@gmail.com (business)",
+ "kind": "tool",
+ "type": "api-request (function)",
+ "name": "get_quote",
+ "description": "READ-ONLY fare quote WITH signed quote token (V0.3 contract). Computes the deterministic fare from the official pricing grid (pricing_zones) and returns {status, fare, currency, zone_code, quote_token, expires_at}. AIRPORT PRICING IS BY GEOGRAPHIC ZONE: ZONE_1 = $35 flat, ZONE_2 = $45 flat, ZONE_3 = $15 + $2.75/mile; medical = $20 + $2.75/mile. The zone is determined by the server from the city of the non-airport address; if it cannot be determined, the result is {status: 'ZONE_REQUIRED'} and NO fare: ask the caller for the city and call again. The quote_token is an HMAC-signed token binding service type, addresses, pickup time, zone, distance and fare; it is valid 15 minutes, is REQUIRED by create_booking_commit, and can be consumed exactly once. Creates nothing, books nothing, never alerts a driver. Call this BEFORE quoting any price. RESPONSE CONTRACT: this tool is called through the assistant server URL; the server (Make scenario W02, 6825545) answers HTTP 200. ENVELOPE UNVERIFIED: confirm from a dashboard test call whether Vapi sends a toolCallList envelope or a flat JSON body; W02 was verified with a flat body. If the distance cannot be measured, result contains {status: 'DISTANCE_REQUIRED'} and NO fare: ask the caller for the approximate distance and call get_quote again with caller_stated_distance_miles, or state that the fare will be confirmed by the driver. Never invent a fare.",
+ "parameters": {
+  "properties": {
+   "caller_stated_distance_miles": {
+    "description": "Approximate distance in miles stated by the caller. Provide ONLY when the server answered DISTANCE_REQUIRED on a previous call and the caller gave an approximate distance.",
+    "type": "number"
+   },
+   "dropoff_address": {
+    "description": "Full dropoff address as given by the caller.",
+    "type": "string"
+   },
+   "pickup_address": {
+    "description": "Full pickup address as given by the caller.",
+    "type": "string"
+   },
+   "pickup_datetime": {
+    "description": "Requested pickup date and time, ISO 8601 (America/New_York).",
+    "type": "string"
+   },
+   "service_type": {
+    "description": "The ride type identified during the call.",
+    "enum": [
+     "AIRPORT_CVG",
+     "MEDICAL_HOSPITAL",
+     "BUSINESS_EXEC",
+     "LOCAL_TAXI"
+    ],
+    "type": "string"
+   },
+   "zone_code": {
+    "description": "Airport zone if you already know it from a previous get_quote answer in this call (ZONE_1, ZONE_2 or ZONE_3). Usually omit: the server determines it from the city.",
+    "enum": [
+     "ZONE_1",
+     "ZONE_2",
+     "ZONE_3"
+    ],
+    "type": "string"
+   }
+  },
+  "required": [
+   "service_type",
+   "pickup_address",
+   "dropoff_address",
+   "pickup_datetime"
+  ],
+  "type": "object"
+ },
+ "server": {
+  "url": "https://hook.us2.make.com/4pevp8k4sy415yx6ds5y4uttsvi7h2mu",
+  "headers": [
+   {
+    "name": "x-vapi-secret",
+    "value": "PASTE_VAPI_SHARED_SECRET_HERE"
+   }
+  ]
+ },
+ "version": "pin the version at creation (do NOT leave 'use latest version')",
+ "notes": [
+  "Header value is a PLACEHOLDER: the shared secret is unchosen. The same value must later be set in the Make gate filters (W1 v3 + W02). Until then the gate rejects everything: fail-closed.",
+  "Envelope shape (toolCallList vs flat JSON) is UNVERIFIED: W02/W1 v3 were verified with flat JSON bodies. Establish from a Vapi dashboard test call in the new account before going live; do not assume."
+ ]
+}

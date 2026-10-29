@@ -1,0 +1,12 @@
+{
+ "create_in": "Vapi account nkytransportationlibertyride@gmail.com (business)",
+ "kind": "tool",
+ "type": "end-call (built-in end call tool)",
+ "name": "end_liberty_ride_call",
+ "description": "End the call after the caller indicates they are finished and the receptionist has given a brief closing.",
+ "parameters": {},
+ "version": "pin the version at creation (do NOT leave 'use latest version')",
+ "notes": [
+  "No server, no parameters: end-call tool only, as in the live amdkn account."
+ ]
+}

@@ -30,8 +30,9 @@ reputation that brings customers back. Plumbing is only a means.
 - `supabase/` — database: migrations, grant doctrine, RPC contract.
 - `make/` — Make scenarios (W1 voice booking commit), runbooks.
 - `vapi/` — voice configs (assistant, squad, tools, phone).
-  Secret-free exports. Vapi is the voice; Twilio and Telegram are
-  OUT, permanently.
+  Secret-free exports. Vapi is the voice; Telegram is OUT,
+  permanently. Twilio is SMS-only since 2026-10-29 (voice = Vapi
+  number, SMS = Twilio) — the old Twilio account is inactive.
 - `docs/` — product spec (`design_draft.md`) and decision record
   (`ADR-decisions.md`). The spec is the design authority.
 
@@ -43,7 +44,7 @@ reputation that brings customers back. Plumbing is only a means.
 | Vercel | `nkytransportationlibertyride@gmail.com` (team, 5 projects) | — |
 | Supabase | GitHub-OAuth-only account, project `lgvusahqkdwargrjrmmy` | Separate A'Space project — never cross-connect |
 | Make | "Liberty Ride Ky", `nkytransportationlibertyride@gmail.com`, US2 | Personal Make: `amdkn777@gmail.com` — separate |
-| Vapi | Migrating TO `nkytransportationlibertyride@gmail.com` | Currently `amdkn777@gmail.com` (assistant, squad, tools, number) — migration after Make verifies |
+| Vapi | Migrating TO `nkytransportationlibertyride@gmail.com` — migration GO 2026-10-29, pack in `vapi/migration/` | Currently `amdkn777@gmail.com` (assistant, squad, tools, number) — stays live until the verified cutover |
 
 ## Live state (verify via API before acting)
 
@@ -55,10 +56,14 @@ reputation that brings customers back. Plumbing is only a means.
   2026-10-29 (5 behaviors, zone-null fix) — inactive, Free-plan
   quota. Vapi re-pointing still open. Credentials live in W0
   (`make/W0-CREDENTIALS.md`).
-- Vapi: tools still point at n8n webhooks (Tailscale funnel) and
-  fail the secret check; tool definitions have no parameters yet.
-  Re-point + add parameters only after Make verifies. n8n stays
-  alive until the verified cutover.
+- Vapi: tools in the amdkn account still point at n8n webhooks
+  (Tailscale funnel) and fail the secret check; tool definitions
+  have no parameters yet. Migration pack built 2026-10-29
+  (`vapi/migration/`): recreate tools (W02 + W1 v3 webhooks,
+  parameters, `x-vapi-secret` placeholder, pinned versions),
+  assistants, and squad in the business account; phone-number fate
+  and Twilio SMS are open items in the pack. n8n stays alive
+  until the verified cutover.
 - Supabase: migration 003 + 004 applied. `quote_hmac_secret`
   rotation still open. Production OWNER_KEY unset (admin routes
   503 until set — intended).

@@ -1,0 +1,96 @@
+{
+ "create_in": "Vapi account nkytransportationlibertyride@gmail.com (business)",
+ "kind": "tool",
+ "type": "api-request (function)",
+ "name": "create_booking_commit",
+ "description": "Creates the booking and offers the 5-minute lease to the driver. Call ONLY after the caller has explicitly agreed to the quoted fare ('yes') AND pass the quote_token returned by get_quote, the exact quoted_fare, and — for AIRPORT_CVG — the zone_code returned by get_quote. The server verifies the signed token, RECOMPUTES the fare from pricing_zones, consumes the quote exactly once, upserts the customer by phone and links it to the booking; a fare invented or altered by anyone is rejected (QUOTE_MISMATCH / FARE_CHANGED) and never written. IDEMPOTENT: retrying the same commit (same quote_token) returns the SAME booking with idempotent_replay=true — never a duplicate. The ride is NOT confirmed by this call: it becomes CONFIRMED_R10 only when the driver explicitly accepts the lease, and the driver's identity is verified in the callback. If no driver can take the ride (capacity), the call answers error DRIVER_UNAVAILABLE and the booking stays recorded for the owner to handle. RESPONSE CONTRACT: the server (n8n workflow 01) reads the tool call from message.toolCallList[] and answers HTTP 200 with JSON {results: [{toolCallId, result}]} where result is a JSON string {booking_id, ride_status, estimated_fare, currency}, or {results: [{toolCallId, error}]} with error one of QUOTE_EXPIRED, QUOTE_INVALID, QUOTE_MISMATCH, FARE_CHANGED, DRIVER_UNAVAILABLE. The ride_status on success is LEASE_OFFERED_ATTEMPTED_UNKNOWN (driver acceptance pending) — tell the caller the request was sent to the driver, never that the ride is confirmed.",
+ "parameters": {
+  "properties": {
+   "customer_confirmed": {
+    "description": "Must be true, and may be true only after the caller explicitly said yes to the quoted fare.",
+    "type": "boolean"
+   },
+   "customer_name": {
+    "description": "Caller's full name.",
+    "type": "string"
+   },
+   "customer_phone": {
+    "description": "Caller's phone number (the number they are calling from, confirmed verbally).",
+    "type": "string"
+   },
+   "dropoff_address": {
+    "description": "Full dropoff address. Must match the get_quote call exactly.",
+    "type": "string"
+   },
+   "flight_number": {
+    "description": "Flight number. Required when service_type is AIRPORT_CVG; omit otherwise.",
+    "type": "string"
+   },
+   "pickup_address": {
+    "description": "Full pickup address. Must match the get_quote call exactly.",
+    "type": "string"
+   },
+   "pickup_datetime": {
+    "description": "Pickup date and time, ISO 8601 (America/New_York). Must match the get_quote call exactly.",
+    "type": "string"
+   },
+   "quote_token": {
+    "description": "The signed quote token returned by get_quote (valid 15 minutes). Required: the server rejects any commit without a valid, unexpired token.",
+    "type": "string"
+   },
+   "quoted_fare": {
+    "description": "The exact fare returned by get_quote and accepted by the caller. The server re-verifies it against the signed token and the pricing grid; any other value is rejected.",
+    "type": "number"
+   },
+   "service_type": {
+    "description": "The ride type identified during the call.",
+    "enum": [
+     "AIRPORT_CVG",
+     "MEDICAL_HOSPITAL",
+     "BUSINESS_EXEC",
+     "LOCAL_TAXI"
+    ],
+    "type": "string"
+   },
+   "special_needs": {
+    "description": "Assistance needs for medical rides (folding wheelchair, help entering the hospital, return waiting). Omit if none.",
+    "type": "string"
+   },
+   "zone_code": {
+    "description": "The zone_code returned by get_quote (ZONE_1, ZONE_2 or ZONE_3). REQUIRED when service_type is AIRPORT_CVG and must match the quoted values exactly; omit for other service types.",
+    "enum": [
+     "ZONE_1",
+     "ZONE_2",
+     "ZONE_3"
+    ],
+    "type": "string"
+   }
+  },
+  "required": [
+   "customer_name",
+   "customer_phone",
+   "service_type",
+   "pickup_address",
+   "dropoff_address",
+   "pickup_datetime",
+   "quoted_fare",
+   "quote_token",
+   "customer_confirmed"
+  ],
+  "type": "object"
+ },
+ "server": {
+  "url": "https://hook.us2.make.com/jui46xdyx8r3pu3dlovk46hr4idvb9my",
+  "headers": [
+   {
+    "name": "x-vapi-secret",
+    "value": "PASTE_VAPI_SHARED_SECRET_HERE"
+   }
+  ]
+ },
+ "version": "pin the version at creation (do NOT leave 'use latest version')",
+ "notes": [
+  "Header value is a PLACEHOLDER: the shared secret is unchosen. The same value must later be set in the Make gate filters (W1 v3 + W02). Until then the gate rejects everything: fail-closed.",
+  "Envelope shape (toolCallList vs flat JSON) is UNVERIFIED: W02/W1 v3 were verified with flat JSON bodies. Establish from a Vapi dashboard test call in the new account before going live; do not assume."
+ ]
+}

@@ -1,12 +1,11 @@
 # vapi/ — voice configs (secret-free)
 
-Status: DRAFT, prepared 2026-10-27 from the V0.3
-reference payload. The live dashboard inventory WAS harvested
-2026-10-27 (05:26 and 09:27 EDT) and is recorded in
-`live-inventory-2026-10-27.md`; the full live harvest of
-2026-10-28 (prompts verbatim, models, voices, phone, Sheets tool)
-is recorded in `live-harvest-2026-10-28.md`. Do not treat the
-reference files as a live export.
+Status: MIGRATION PACK READY 2026-10-29 (`migration/`). The live
+dashboard inventory WAS harvested 2026-10-27 (05:26 and 09:27 EDT)
+and is recorded in `live-inventory-2026-10-27.md`; the full live
+harvest of 2026-10-28 (prompts verbatim, models, voices, phone,
+Sheets tool) is recorded in `live-harvest-2026-10-28.md`. Do not
+treat the reference files as a live export.
 
 ## What each file is
 
@@ -19,16 +18,18 @@ reference files as a live export.
   being replaced. No secret in this folder.
 - `tools/get-quote.json` — `get_quote` function definition, verbatim
   parameters from the payload (4 required, 2 optional). Target URL is
-  `PASTE_MAKE_QUOTE_WEBHOOK_HERE`: the Make quote scenario (W02
-  equivalent) does NOT exist yet. Do NOT point this tool at the W1 v2
-  webhook — W1 v2 re-issues a token and commits; it is not a
-  quote-only endpoint.
+  `PASTE_MAKE_QUOTE_WEBHOOK_HERE` in this reference file: the real
+  target is the Make W02 webhook (6825545, verified 2026-10-29) —
+  see the migration pack `01-tool-get-quote.json`. Do NOT point this
+  tool at any W1 webhook — W1 re-issues a token and commits; it is
+  not a quote-only endpoint.
 - `tools/create-booking-commit.json` — `create_booking_commit`
   definition, verbatim parameters (9 required, 3 optional). Target:
-  the verified W1 v2 webhook
-  `https://hook.us2.make.com/ud1125jgbr54ieqs46nuert9jbvagyid`
-  (scenario 6793518), header `x-vapi-secret` = the shared secret the
-  owner chooses in Make. See the W1 gap in `live-inventory-2026-10-27.md`.
+  the verified W1 v3 webhook
+  `https://hook.us2.make.com/jui46xdyx8r3pu3dlovk46hr4idvb9my`
+  (scenario 6817797; the old v2 URL was fixed 2026-10-29), header
+  `x-vapi-secret` = the shared secret the owner chooses. See the W1
+  gap in `live-inventory-2026-10-27.md`.
 - `live-inventory-2026-10-27.md` — what the live dashboard
   actually holds (verified 2026-10-27). The live tool definitions
   are EMPTY (no parameters, headers or auth) — the reference files
@@ -40,25 +41,24 @@ reference files as a live export.
   corrections NOT applied.
 - `squad.md` — squad members, Sheets/Docs state, phone number.
 
-## Migration sequence (owner decision already taken: after Make verifies)
+## Migration sequence (GO 2026-10-29 — pack in `migration/`)
 
-1. Owner fills the 2 W1 v2 placeholders, W1 reactivates and retests
-   to a real booking id.
-2. Build the Make quote scenario, then resolve the W1 gap (§4 of the
-   migration pack) in the technical chain (S1/S2) — never by asking
-   the owner a technical choice.
-3. Create the 2 tools + assistant + squad in the business Vapi
-   account (`nkytransportationlibertyride@gmail.com`) from these
-   reference files; establish whether that account exists and what
-   happens to +1 859 997-6581 (transfer or new purchase) with the owner.
-4. Only then cut over the old account's tools. n8n stays alive until
-   the verified cutover. No live-customer activation or real-number
-   test without the owner's explicit go.
+1. Make migration complete and verified to the channel boundary
+   (2026-10-29). W1 v3 + W02 verified with fake data.
+2. Recreate tools + assistants + squad in the business Vapi
+   account (`nkytransportationlibertyride@gmail.com`) from
+   `migration/`; establish whether that account exists and what
+   happens to +1 859 997-6581 (transfer or new purchase) — number
+   fate is OPEN in `migration/08-phone-and-sms.OPEN.md`.
+3. Only then cut over live traffic, with the owner's explicit go.
+   n8n stays alive until the verified cutover. No live-customer
+   activation or real-number test without the owner's explicit go.
 
 ## Hard rules
 
 - Secrets never in this repo. Placeholders only.
-- Twilio and Telegram are OUT, permanently. Vapi native only.
+- Telegram is OUT, permanently. Twilio is SMS-only since
+  2026-10-29 (voice = Vapi number). Vapi native for voice.
 - The live dashboard wins over these files wherever they disagree.
   Fix this folder when the harvest lands; do not edit live to match
   a draft.
